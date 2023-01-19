@@ -307,7 +307,10 @@ class InferVideo(InferImage):
                 # 将处理后的该帧画面图像文件，保存至 /tmp 目录下
                 cv2.imwrite(f'{temp_out_dir}/{frame_id:06d}.jpg', annotated_img)
             else:
-                img = self.pred_single_frame_bar(annotated_img, pred_softmax, temp_out_dir, frame_id)
+                img = self.pred_single_frame_bar(img=annotated_img,
+                                                 pred_softmax=pred_softmax,
+                                                 temp_out_dir=temp_out_dir,
+                                                 frame_id=frame_id)
 
             prog_bar.update()  # 更新进度条
 
@@ -322,7 +325,7 @@ class InferStream(InferImage):
     def __init__(self, model) -> None:
         super().__init__(model=model)
 
-    def process_frame(self, img,n=5):
+    def process_frame(self, img, n=5):
         '''
         输入摄像头拍摄画面bgr-array,输出图像分类预测结果bgr-array
         '''
@@ -337,14 +340,14 @@ class InferStream(InferImage):
         if self.language == 'en':
             img_bgr = img
             img = self.annotate_image(img=img_bgr,
-                                                pred_softmax=pred_softmax,
-                                                n=n,
-                                                save_plot=False)
+                                      pred_softmax=pred_softmax,
+                                      n=n,
+                                      save_plot=False)
         else:
             img = self.annotate_image(img=img_pil,
-                                                pred_softmax=pred_softmax,
-                                                n=n,
-                                                save_plot=False)
+                                      pred_softmax=pred_softmax,
+                                      n=n,
+                                      save_plot=False)
             img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)  # RGB转BGR
 
         # 记录该帧处理完毕的时间
