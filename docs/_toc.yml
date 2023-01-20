@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Image Classification
+    numbered: false
+    chapters:
+    - file: 202301_image_classification/01_data_preparation
+    - file: 202301_image_classification/02_inference_with_pretrained_models
