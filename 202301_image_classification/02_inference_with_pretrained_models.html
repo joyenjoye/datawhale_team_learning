@@ -1,0 +1,1361 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Task 2: Inference with Pre-trained models &#8212; Datawhale Team Learning Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Task 1: Image Dataset Preparation" href="01_data_preparation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Datawhale Team Learning Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Classification
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_data_preparation.html">
+   Task 1: Image Dataset Preparation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Task 2: Inference with Pre-trained models
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202301_image_classification/02_inference_with_pretrained_models.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/joyenjoye/datawhale_team_learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202301_image_classification/02_inference_with_pretrained_models.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/202301_image_classification/02_inference_with_pretrained_models.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-directory">
+     Change Directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-packages">
+     Install Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-images-for-inference">
+     Download Images for Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-inference-en">
+   Image Inference(en)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-packages-and-setup-device-a-id-31-a">
+     Load Packages and Setup Device
+     <a id="31">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-pretrained-models-a-id-32-a">
+     Load Pretrained Models
+     <a id="32">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-preprocessing-for-inference">
+     Image Preprocessing for Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference">
+     Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis-on-infernce-results">
+     Analysis on Infernce Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#annotate-image-with-prediction">
+     Annotate Image with prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-of-probablities-of-classes">
+     Table of Probablities of Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-inference-zh">
+   Image Inference (zh)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-chinese-font-for-pillow">
+     Import Chinese Font for Pillow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-packages-and-setup-device">
+     Load Packages and Setup Device
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-pretrained-models">
+     Load Pretrained Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Image Preprocessing for Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Analysis on Infernce Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Annotate Image with Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Table of Probablities of Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#video-inference-en">
+   Video Inference(en)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#video-inference-zh">
+   Video Inference(zh)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stream-inference-en">
+   Stream Inference(en)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stream-inference-zh">
+   Stream Inference(zh)
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Task 2: Inference with Pre-trained models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment Setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-directory">
+     Change Directory
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-packages">
+     Install Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-images-for-inference">
+     Download Images for Inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-inference-en">
+   Image Inference(en)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-packages-and-setup-device-a-id-31-a">
+     Load Packages and Setup Device
+     <a id="31">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-pretrained-models-a-id-32-a">
+     Load Pretrained Models
+     <a id="32">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-preprocessing-for-inference">
+     Image Preprocessing for Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference">
+     Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis-on-infernce-results">
+     Analysis on Infernce Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#annotate-image-with-prediction">
+     Annotate Image with prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-of-probablities-of-classes">
+     Table of Probablities of Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-inference-zh">
+   Image Inference (zh)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-chinese-font-for-pillow">
+     Import Chinese Font for Pillow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-packages-and-setup-device">
+     Load Packages and Setup Device
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-pretrained-models">
+     Load Pretrained Models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Image Preprocessing for Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Analysis on Infernce Results
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Annotate Image with Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Table of Probablities of Classes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#video-inference-en">
+   Video Inference(en)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#video-inference-zh">
+   Video Inference(zh)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stream-inference-en">
+   Stream Inference(en)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stream-inference-zh">
+   Stream Inference(zh)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="task-2-inference-with-pre-trained-models">
+<h1>Task 2: Inference with Pre-trained models<a class="headerlink" href="#task-2-inference-with-pre-trained-models" title="Permalink to this headline">#</a></h1>
+<p>In this notebook, we are going to use pre-trained image-classification models to do inference on image and video data.</p>
+<ul class="simple">
+<li><p>This notebook is the learning notes for task 2 of Image classification (Datawhale Team Learning Session 45). The source code of the jupyter notebook can be find <a class="reference external" href="https://github.com/joyenjoye/datawhale_team_learning/tree/main/projects/202301_image_classification">here</a>.</p></li>
+<li><p>This is built upon the <a class="reference external" href="https://github.com/TommyZihao/Train_Custom_Dataset/tree/main/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/2-%E3%80%90Pytorch%E3%80%91%E9%A2%84%E8%AE%AD%E7%BB%83%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B">Inference with Pre-trained models</a> from <a class="reference external" href="https://github.com/TommyZihao">Tommy Zihao</a></p></li>
+</ul>
+<section id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">#</a></h2>
+<section id="change-directory">
+<h3>Change Directory<a class="headerlink" href="#change-directory" title="Permalink to this headline">#</a></h3>
+<p>Use jupyter magic command <code class="docutils literal notranslate"><span class="pre">%cd</span></code> to change the directory to the root directory of the project</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> ../
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/joye/Github/datawhale_team_learning/projects/202301_image_classification
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="install-packages">
+<h3>Install Packages<a class="headerlink" href="#install-packages" title="Permalink to this headline">#</a></h3>
+<p>Install the packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code> means instaling from requirements.txt</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-q</span></code> means installing quitely</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-images-for-inference">
+<h3>Download Images for Inference<a class="headerlink" href="#download-images-for-inference" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bash<span class="w"> </span>src/download.sh
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 37074  100 37074    0     0  34617      0 --:--:-- --:--:-- --:--:--     00  0:00:01  0:00:01 --:--:-- 35074
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  419k  100  419k    0     0   730k      0 --:--:-- --:--:-- --:--:--  740k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  453k  100  453k    0     0   821k      0 --:--:-- --:--:-- --:--:--  835k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 34701  100 34701    0     0   100k      0 --:--:-- --:--:-- --:--:--  103k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  277k  100  277k    0     0   536k      0 --:--:-- --:--:-- --:--:--  544k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  798k  100  798k    0     0  1406k      0 --:--:-- --:--:-- --:--:-- 1423k
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 55.9M  100 55.9M    0     0  7246k      0  0:00:07  0:00:07 --:--:-- 8113k 7598k
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="image-inference-en">
+<h2>Image Inference(en)<a class="headerlink" href="#image-inference-en" title="Permalink to this headline">#</a></h2>
+<section id="load-packages-and-setup-device-a-id-31-a">
+<h3>Load Packages and Setup Device<a id='31'></a><a class="headerlink" href="#load-packages-and-setup-device-a-id-31-a" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">inference</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> 
+<span class="c1"># sets the backend of matplotlib to the &#39;inline&#39; backend, </span>
+<span class="c1"># With this backend, the output of plotting commands is displayed </span>
+<span class="c1"># inline within frontends like the Jupyter notebook, directly below</span>
+<span class="c1"># the code cell that produced it. </span>
+<span class="c1"># The resulting plots will then also be stored in the notebook document.</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-pretrained-models-a-id-32-a">
+<h3>Load Pretrained Models<a id='32'></a><a class="headerlink" href="#load-pretrained-models-a-id-32-a" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">ResNet18_Weights</span><span class="p">,</span> <span class="n">resnet18</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">resnet18</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">ResNet18_Weights</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+
+<span class="n">ImageInference</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">InferImage</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+<span class="n">ImageInference</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is unavailable thus using CPU
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-preprocessing-for-inference">
+<h3>Image Preprocessing for Inference<a class="headerlink" href="#image-preprocessing-for-inference" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">################################################</span>
+<span class="c1"># parameter</span>
+<span class="c1">################################################</span>
+<span class="n">img_path</span> <span class="o">=</span> <span class="s1">&#39;data/image_net/test/banana1.jpg&#39;</span>
+<span class="c1">################################################</span>
+<span class="n">img_pil</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+<span class="n">input_img</span> <span class="o">=</span> <span class="n">ImageInference</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">img_pil</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before preprocess:  (820, 1094, 3)
+After preprocess:  torch.Size([3, 224, 224])
+</pre></div>
+</div>
+<img alt="../_images/02_inference_with_pretrained_models_13_1.png" src="../_images/02_inference_with_pretrained_models_13_1.png" />
+</div>
+</div>
+</section>
+<section id="inference">
+<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_softmax</span> <span class="o">=</span> <span class="n">ImageInference</span><span class="o">.</span><span class="n">inference</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Run model inference and output logits. The shape is -&gt; torch.Size([1, 1000])
+Apply softmax on the logits to get probability. The shape is -&gt; torch.Size([1, 1000])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis-on-infernce-results">
+<h3>Analysis on Infernce Results<a class="headerlink" href="#analysis-on-infernce-results" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ImageInference</span><span class="o">.</span><span class="n">plot_class_probability</span><span class="p">(</span><span class="n">pred_softmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_inference_with_pretrained_models_17_0.png" src="../_images/02_inference_with_pretrained_models_17_0.png" />
+</div>
+</div>
+</section>
+<section id="annotate-image-with-prediction">
+<h3>Annotate Image with prediction<a class="headerlink" href="#annotate-image-with-prediction" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">annotated_img</span> <span class="o">=</span> <span class="n">ImageInference</span><span class="o">.</span><span class="n">annotate_image</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                              <span class="n">img_path</span><span class="o">=</span><span class="n">img_path</span><span class="p">,</span> 
+                                              <span class="n">pred_softmax</span><span class="o">=</span><span class="n">pred_softmax</span><span class="p">,</span> 
+                                              <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ImageInference</span><span class="o">.</span><span class="n">pair_plot</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span><span class="n">annotated_img</span><span class="p">,</span><span class="n">pred_softmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_inference_with_pretrained_models_19_0.png" src="../_images/02_inference_with_pretrained_models_19_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="table-of-probablities-of-classes">
+<h3>Table of Probablities of Classes<a class="headerlink" href="#table-of-probablities-of-classes" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">ImageInference</span><span class="o">.</span><span class="n">prediction</span><span class="p">(</span><span class="n">pred_softmax</span><span class="p">))</span> <span class="c1"># display the final prediction</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Class</th>
+      <th>Class_ID</th>
+      <th>Confidence(%)</th>
+      <th>WordNet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banana</td>
+      <td>954</td>
+      <td>99.776316</td>
+      <td>n07753592</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>zucchini</td>
+      <td>939</td>
+      <td>0.126272</td>
+      <td>n07716358</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>acorn_squash</td>
+      <td>941</td>
+      <td>0.043848</td>
+      <td>n07717410</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>spaghetti_squash</td>
+      <td>940</td>
+      <td>0.013670</td>
+      <td>n07716906</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>cucumber</td>
+      <td>943</td>
+      <td>0.006226</td>
+      <td>n07718472</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>coil</td>
+      <td>506</td>
+      <td>0.006063</td>
+      <td>n03065424</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>bell_pepper</td>
+      <td>945</td>
+      <td>0.003749</td>
+      <td>n07720875</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>coral_fungus</td>
+      <td>991</td>
+      <td>0.002227</td>
+      <td>n12985857</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>vase</td>
+      <td>883</td>
+      <td>0.001681</td>
+      <td>n04522168</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>hook</td>
+      <td>600</td>
+      <td>0.001548</td>
+      <td>n03532672</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="image-inference-zh">
+<h2>Image Inference (zh)<a class="headerlink" href="#image-inference-zh" title="Permalink to this headline">#</a></h2>
+<section id="import-chinese-font-for-pillow">
+<h3>Import Chinese Font for Pillow<a class="headerlink" href="#import-chinese-font-for-pillow" title="Permalink to this headline">#</a></h3>
+<p>Font setup in <code class="docutils literal notranslate"><span class="pre">/src/inference.py</span></code></p>
+</section>
+<section id="load-packages-and-setup-device">
+<h3>Load Packages and Setup Device<a class="headerlink" href="#load-packages-and-setup-device" title="Permalink to this headline">#</a></h3>
+<p>Packages has been loaded in  <a class="reference external" href="#31">section 3.1</a></p>
+</section>
+<section id="load-pretrained-models">
+<h3>Load Pretrained Models<a class="headerlink" href="#load-pretrained-models" title="Permalink to this headline">#</a></h3>
+<p>Reuse the Previous model and initiated class  in <a class="reference external" href="#32">section 3.2</a></p>
+</section>
+<section id="id1">
+<h3>Image Preprocessing for Inference<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">################################################</span>
+<span class="c1"># parameter</span>
+<span class="c1">################################################</span>
+<span class="n">img_path</span> <span class="o">=</span> <span class="s1">&#39;data/image_net/test/cat_dog.jpg&#39;</span>
+<span class="c1">################################################</span>
+<span class="n">img_pil</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+<span class="n">input_img</span> <span class="o">=</span> <span class="n">ImageInference</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">img_pil</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before preprocess:  (1560, 2340, 3)
+After preprocess:  torch.Size([3, 224, 224])
+</pre></div>
+</div>
+<img alt="../_images/02_inference_with_pretrained_models_27_1.png" src="../_images/02_inference_with_pretrained_models_27_1.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Inference<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_softmax</span> <span class="o">=</span> <span class="n">ImageInference</span><span class="o">.</span><span class="n">inference</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Run model inference and output logits. The shape is -&gt; torch.Size([1, 1000])
+Apply softmax on the logits to get probability. The shape is -&gt; torch.Size([1, 1000])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Analysis on Infernce Results<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a copy of this object in CPU memory</span>
+<span class="n">ImageInference</span><span class="o">.</span><span class="n">plot_class_probability</span><span class="p">(</span><span class="n">pred_softmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_inference_with_pretrained_models_31_0.png" src="../_images/02_inference_with_pretrained_models_31_0.png" />
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>Annotate Image with Prediction<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ImageInference</span><span class="o">.</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh&#39;</span>
+<span class="n">annotated_img</span> <span class="o">=</span> <span class="n">ImageInference</span><span class="o">.</span><span class="n">annotate_image</span><span class="p">(</span><span class="n">img</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                              <span class="n">img_path</span><span class="o">=</span><span class="n">img_path</span><span class="p">,</span> 
+                                              <span class="n">pred_softmax</span><span class="o">=</span><span class="n">pred_softmax</span><span class="p">,</span> 
+                                              <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ImageInference</span><span class="o">.</span><span class="n">pair_plot</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span><span class="n">annotated_img</span><span class="p">,</span><span class="n">pred_softmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02_inference_with_pretrained_models_33_0.png" src="../_images/02_inference_with_pretrained_models_33_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>Table of Probablities of Classes<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">ImageInference</span><span class="o">.</span><span class="n">prediction</span><span class="p">(</span><span class="n">pred_softmax</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Class</th>
+      <th>Class_ID</th>
+      <th>Confidence(%)</th>
+      <th>WordNet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>山猫,虎猫</td>
+      <td>282</td>
+      <td>37.327239</td>
+      <td>n02123159</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>虎斑猫</td>
+      <td>281</td>
+      <td>26.834521</td>
+      <td>n02123045</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>埃及猫</td>
+      <td>285</td>
+      <td>4.506620</td>
+      <td>n02124075</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>牧羊犬</td>
+      <td>231</td>
+      <td>4.129088</td>
+      <td>n02106030</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>雪橇犬,阿拉斯加爱斯基摩狗</td>
+      <td>249</td>
+      <td>2.274127</td>
+      <td>n02110063</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>猞猁,山猫</td>
+      <td>287</td>
+      <td>1.976750</td>
+      <td>n02127052</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>波斯猫</td>
+      <td>283</td>
+      <td>1.831976</td>
+      <td>n02123394</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>网球</td>
+      <td>852</td>
+      <td>1.714958</td>
+      <td>n04409515</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>狮子</td>
+      <td>291</td>
+      <td>1.518197</td>
+      <td>n02129165</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>边境牧羊犬</td>
+      <td>232</td>
+      <td>1.183690</td>
+      <td>n02106166</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="video-inference-en">
+<h2>Video Inference(en)<a class="headerlink" href="#video-inference-en" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">inference</span>
+<span class="kn">from</span> <span class="nn">src.inference</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">################################################</span>
+<span class="c1"># parameter</span>
+<span class="c1">################################################</span>
+<span class="n">input_video</span> <span class="o">=</span> <span class="s1">&#39;data/image_net/test/video_3.mp4&#39;</span>
+<span class="c1">################################################</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">ResNet18_Weights</span><span class="p">,</span> <span class="n">resnet18</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">resnet18</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">ResNet18_Weights</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+
+<span class="n">VideoInference</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">InferVideo</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is unavailable thus using CPU
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VideoInference</span><span class="o">.</span><span class="n">predict_and_annotate</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="n">input_video</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;output/output_pred.mp4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>创建文件夹 20230119193442 用于存放每帧预测结果
+[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;] 613/613, 18.6 task/s, elapsed: 33s, ETA:     0s[                                                  ] 0/613, elapsed: 0s, ETA:
+删除临时文件夹 20230119193442
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VideoInference</span><span class="o">.</span><span class="n">predict_and_annotate</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="n">input_video</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;output/output_pred_bar.mp4&#39;</span><span class="p">,</span><span class="n">with_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>创建文件夹 20230119195047 用于存放每帧预测结果
+[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;] 613/613, 28.6 task/s, elapsed: 21s, ETA:     0s[                                                  ] 0/613, elapsed: 0s, ETA:
+删除临时文件夹 20230119195047
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="video-inference-zh">
+<h2>Video Inference(zh)<a class="headerlink" href="#video-inference-zh" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VideoInference</span><span class="o">.</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VideoInference</span><span class="o">.</span><span class="n">predict_and_annotate</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="n">input_video</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;output/output_pred_zh.mp4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>创建文件夹 20230119215239 用于存放每帧预测结果
+[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;] 613/613, 33.0 task/s, elapsed: 19s, ETA:     0s[                                                  ] 0/613, elapsed: 0s, ETA:
+删除临时文件夹 20230119215239
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VideoInference</span><span class="o">.</span><span class="n">predict_and_annotate</span><span class="p">(</span><span class="n">input_path</span><span class="o">=</span><span class="n">input_video</span><span class="p">,</span><span class="n">output_path</span><span class="o">=</span><span class="s1">&#39;output/output_pred_zh_bar.mp4&#39;</span><span class="p">,</span><span class="n">with_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>创建文件夹 20230119230908 用于存放每帧预测结果
+[&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;] 613/613, 49.4 task/s, elapsed: 12s, ETA:     0s[                                                  ] 0/613, elapsed: 0s, ETA:
+删除临时文件夹 20230119230908
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stream-inference-en">
+<h2>Stream Inference(en)<a class="headerlink" href="#stream-inference-en" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import importlib</span>
+<span class="c1"># importlib.reload(inference)</span>
+<span class="kn">from</span> <span class="nn">src</span> <span class="kn">import</span> <span class="n">inference</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">ResNet18_Weights</span><span class="p">,</span> <span class="n">resnet18</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">resnet18</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">ResNet18_Weights</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">)</span>
+
+<span class="n">StreamInference</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">InferStream</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is unavailable thus using CPU
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">StreamInference</span><span class="o">.</span><span class="n">predict_and_annotate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stream-inference-zh">
+<h2>Stream Inference(zh)<a class="headerlink" href="#stream-inference-zh" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">StreamInference</span><span class="o">.</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;zh&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">StreamInference</span><span class="o">.</span><span class="n">predict_and_annotate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./202301_image_classification"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01_data_preparation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Task 1: Image Dataset Preparation</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joye<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
