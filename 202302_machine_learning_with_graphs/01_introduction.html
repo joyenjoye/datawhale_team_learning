@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Task 1: Introduction &#8212; Datawhale Team Learning Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Task 2: Inference with Pre-trained models" href="../202301_image_classification/02_inference_with_pretrained_models.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Datawhale Team Learning Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 🤗
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202301_image_classification/01_data_preparation.html">
+   Task 1: Image Dataset Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202301_image_classification/02_inference_with_pretrained_models.html">
+   Task 2: Inference with Pre-trained models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning with Graphs
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Task 1: Introduction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/joyenjoye/datawhale_team_learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202302_machine_learning_with_graphs/01_introduction.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/202302_machine_learning_with_graphs/01_introduction.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-data-are-graphs">
+   Types of Data are Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-algorithms">
+   Graph Algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-of-graph-ml">
+   Applications of Graph ML
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-level-example-protein-folding">
+     Node level Example: Protein Folding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-level-example-recommender-systems">
+     Link level Example: Recommender Systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-level-example-drug-side-effects">
+     Link level Example: Drug Side Effects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subgraph-level-example-traffic-prediction">
+     Subgraph level Example: Traffic Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-classification-drug-discovery">
+     Graph Classification: Drug Discovery
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-generation-generating-novel-molecules">
+     Graph Generation: Generating Novel Molecules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-evolution-physical-simulation">
+     Graph Evolution: Physical Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choice-of-graph-representation">
+   Choice of Graph representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#options-when-constructing-graphs">
+     Options when constructing graphs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Task 1: Introduction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-data-are-graphs">
+   Types of Data are Graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-algorithms">
+   Graph Algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications-of-graph-ml">
+   Applications of Graph ML
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-level-example-protein-folding">
+     Node level Example: Protein Folding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-level-example-recommender-systems">
+     Link level Example: Recommender Systems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#link-level-example-drug-side-effects">
+     Link level Example: Drug Side Effects
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subgraph-level-example-traffic-prediction">
+     Subgraph level Example: Traffic Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-classification-drug-discovery">
+     Graph Classification: Drug Discovery
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-generation-generating-novel-molecules">
+     Graph Generation: Generating Novel Molecules
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-evolution-physical-simulation">
+     Graph Evolution: Physical Simulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choice-of-graph-representation">
+   Choice of Graph representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#options-when-constructing-graphs">
+     Options when constructing graphs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="task-1-introduction">
+<h1>Task 1: Introduction<a class="headerlink" href="#task-1-introduction" title="Permalink to this headline">#</a></h1>
+<p>Graphs are a general language for describing and analyzing entities with relations/Interactions</p>
+<section id="types-of-data-are-graphs">
+<h2>Types of Data are Graphs<a class="headerlink" href="#types-of-data-are-graphs" title="Permalink to this headline">#</a></h2>
+<p>Many types of data can be represented as graphs and modeling these graphical relations allows to capture the relationships between different objects or entities. Through which, we can understand the underlying phenomena in different domains.</p>
+<ul class="simple">
+<li><p>Social Networks</p></li>
+<li><p>Economic Networks</p></li>
+<li><p>Communication Networks</p></li>
+<li><p>Citation Networks</p></li>
+<li><p>Internet</p></li>
+<li><p>Network for Neurons</p></li>
+<li><p>Knowledge Graphs: describe knowledge</p></li>
+<li><p>Regulatory Networks: describe the regulatory mechanisms as processes governed by the connections between different entities.</p></li>
+<li><p>Scene Graphs</p></li>
+<li><p>Code Graphs: describe the software as a graph of calls among functions</p></li>
+<li><p>Molecules</p></li>
+<li><p>3D Shapes</p></li>
+</ul>
+<p>How do we take advantage of relational structure for better prediction?
+Complex domains have a rich relational structure, which cna be represented as relational graph. By explicitly modeling relationships we achieve better performance.</p>
+<p>Modern Deep learning tool box is designed for simple sequences(Text) &amp; grids(Imges). Networks are complex with the following characteristics:</p>
+<ul class="simple">
+<li><p>Arbitrary size and complex topological structure</p></li>
+<li><p>No fixed ordering or reference points</p></li>
+<li><p>often dynamic and have multi-modal features</p></li>
+</ul>
+<p>How can we develop neural networks that are much more broadly applicable? so that we can use for graphs.</p>
+<ul class="simple">
+<li><p>Input: Networks</p></li>
+<li><p>Output/Predictions: Node Labels, New Links, Generated graphs and subgraphs</p></li>
+</ul>
+<p>Traditional Machine Learning spend a lot of time on feature engineering to capture the structure of the data so that machine learning models can take advantage of.</p>
+<p>In this case, it will mostly about representation learning where feature engineer is removed. But instead, we can automatically learn a good representation so that it can be used for down stream machine learning algorithm.</p>
+<p>Representation Learning is to map nodes to d-dimensional embeddings such that similar nodes in the network are embedded close together in the embedding space.</p>
+<p>The courses covers various topic in Machine Learning and representation Learning for Graph Structured data:</p>
+<ul class="simple">
+<li><p>Traditional methods: Graphlets, Graph kernels</p></li>
+<li><p>Node Embeddings: DeepWalk, Node2Vec</p></li>
+<li><p>Graph Neural Networks: GCN, GraphSAGE, GAT, Theory of GNNs.</p></li>
+<li><p>Knowledge Graphs and reasoning: TransE, BetaE</p></li>
+<li><p>Deep Generative Model for Graphs</p></li>
+<li><p>Applications in Biomedicine, Science and fraud detection, recommender system.</p></li>
+</ul>
+</section>
+<section id="graph-algorithms">
+<h2>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Pathfinding &amp; Search</p></li>
+<li><p>Centrality / Importance</p></li>
+<li><p>Community Detection</p></li>
+<li><p>Link prediction</p></li>
+<li><p>Similarity</p></li>
+<li><p>Embeddings</p></li>
+</ul>
+</section>
+<section id="applications-of-graph-ml">
+<h2>Applications of Graph ML<a class="headerlink" href="#applications-of-graph-ml" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Node Classification: predict a property of a node. e.g. Categorize online users or items</p></li>
+<li><p>Link Prediction: predict whether there are missing links between nodes. e.g. Knowledge graph completion</p></li>
+<li><p>Graph classification: categorize different graphs. Molecule property prediction</p></li>
+<li><p>Clustering: detect if nodes form a community. e.g. Social Circle detection.</p></li>
+<li><p>Graph Generation: Drug discovery</p></li>
+<li><p>Graph Evolution: Physical Simulation.</p></li>
+</ul>
+<section id="node-level-example-protein-folding">
+<h3>Node level Example: Protein Folding<a class="headerlink" href="#node-level-example-protein-folding" title="Permalink to this headline">#</a></h3>
+<p>Every protein is made up a sequence of amino acids bonded together.  There amino acids interact locally</p>
+<ul class="simple">
+<li><p>nodes: amino acids in a protein sequence</p></li>
+<li><p>Edges:</p></li>
+</ul>
+</section>
+<section id="link-level-example-recommender-systems">
+<h3>Link level Example: Recommender Systems<a class="headerlink" href="#link-level-example-recommender-systems" title="Permalink to this headline">#</a></h3>
+<p>Predict whether two nodes in a graph are related.</p>
+<p>Users interacts with items</p>
+<ul class="simple">
+<li><p>Watch moives</p></li>
+</ul>
+</section>
+<section id="link-level-example-drug-side-effects">
+<h3>Link level Example: Drug Side Effects<a class="headerlink" href="#link-level-example-drug-side-effects" title="Permalink to this headline">#</a></h3>
+<p>Many patients take multiple drugs to treat complex or co-existing disease.</p>
+<ul class="simple">
+<li><p>46% people ages 70-79 take more 5 drugs</p></li>
+<li><p>Many patients take more than 20 drugs</p></li>
+</ul>
+<p>Task: predict adverse side effect for a given pair of drugs. e.g. How likely will Simvastatin and Ciprofloxacin when taken together , break down muscle tissue?</p>
+<p>The graph can be constructed:</p>
+<ul class="simple">
+<li><p>Nodes: Drugs &amp; Proteins</p></li>
+<li><p>Edges: Interactions</p></li>
+</ul>
+<p>The task is essentially predict missing edge/link.</p>
+</section>
+<section id="subgraph-level-example-traffic-prediction">
+<h3>Subgraph level Example: Traffic Prediction<a class="headerlink" href="#subgraph-level-example-traffic-prediction" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="graph-classification-drug-discovery">
+<h3>Graph Classification: Drug Discovery<a class="headerlink" href="#graph-classification-drug-discovery" title="Permalink to this headline">#</a></h3>
+<p>Antibiotics are small molecular graphs</p>
+<ul class="simple">
+<li><p>Nodes: Atoms</p></li>
+<li><p>Edges: Chemical Bonds</p></li>
+</ul>
+<p>Task: predict promising molecules from a pool of candidates.</p>
+<p>The predicted promising molecules can be further tested in the lab. This helps with discover drugs quickly and more efficiently.</p>
+</section>
+<section id="graph-generation-generating-novel-molecules">
+<h3>Graph Generation: Generating Novel Molecules<a class="headerlink" href="#graph-generation-generating-novel-molecules" title="Permalink to this headline">#</a></h3>
+<p>Graph generation can be used for the following two use cases:</p>
+<ul class="simple">
+<li><p>Generate new molecules as graphs in a targeted way. For example, generate novel molecules with high drug likeness.</p></li>
+<li><p>Optimize existing molecules to have desirable properties.</p></li>
+</ul>
+</section>
+<section id="graph-evolution-physical-simulation">
+<h3>Graph Evolution: Physical Simulation<a class="headerlink" href="#graph-evolution-physical-simulation" title="Permalink to this headline">#</a></h3>
+<p>Physical simulation as a graph</p>
+<ul class="simple">
+<li><p>Nodes: Particles</p></li>
+<li><p>Edges: Interaction between particles</p></li>
+</ul>
+<p>The simulation repeats the following process</p>
+<ol class="simple">
+<li><p>construct a graph with nodes being particles and edge being proximity between nodes</p></li>
+<li><p>predict nodes’ position and velocities based on current position and velocities</p></li>
+<li><p>move the particles to new positions</p></li>
+</ol>
+</section>
+</section>
+<section id="choice-of-graph-representation">
+<h2>Choice of Graph representation<a class="headerlink" href="#choice-of-graph-representation" title="Permalink to this headline">#</a></h2>
+<p>Network or graphs <span class="math notranslate nohighlight">\(G(N,E)\)</span> consists of</p>
+<ul class="simple">
+<li><p>Objects: nodes, vertices. Denoted as <span class="math notranslate nohighlight">\(N\)</span></p></li>
+<li><p>Interactions: links, edges. Denoted as  <span class="math notranslate nohighlight">\(E\)</span></p></li>
+</ul>
+<p>We may have different options for constructing networks. Choice of the proper network representation of a given domain determines our ability to use network successfully.</p>
+<section id="options-when-constructing-graphs">
+<h3>Options when constructing graphs<a class="headerlink" href="#options-when-constructing-graphs" title="Permalink to this headline">#</a></h3>
+<p>Graphs can be undirected or directed. Examples of undirected graphs are collaborations, friendship on facebook. Examples of directed graphs are phone calls, financial transactions and following on Twitter.</p>
+<p>Node degrees. For undirected, node degree is the number of edges adjacent to node <span class="math notranslate nohighlight">\(i\)</span> For directed graphs, we can further define in-degree and out-degree. The degree of a node is sum of in and out degrees.</p>
+<p>Bipartite is a type of graph structure whose nodes can be divided into two disjoint set U and V such that every links connect a node in U to one in V.  Examples of Bipartite graphs are Authors-to-Papers(they are authored), Actors-to-Movies(they are appeared in), Users-to-Movies(they rated), Recipes-to-Ingredients(they contain). Bipartite can be projected as Folded networks. For example Authors-to-Papers(they are authored) can be projected as author collaboration networks.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./202302_machine_learning_with_graphs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../202301_image_classification/02_inference_with_pretrained_models.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Task 2: Inference with Pre-trained models</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joye<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
