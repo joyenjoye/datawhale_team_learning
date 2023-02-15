@@ -320,13 +320,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-data-are-graphs">
-   Types of Data are Graphs
+  <a class="reference internal nav-link" href="#why-graphs">
+   Why Graphs?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graph-algorithms">
-   Graph Algorithms
+  <a class="reference internal nav-link" href="#how-to-model-relational-structure-in-graphs">
+   How to model relational structure in graphs?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-ml-tools">
+   Graph ML Tools
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -335,23 +340,23 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#node-level-example-protein-folding">
-     Node level Example: Protein Folding
+    <a class="reference internal nav-link" href="#node-classification-protein-folding">
+     Node Classification: Protein Folding
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#link-level-example-recommender-systems">
-     Link level Example: Recommender Systems
+    <a class="reference internal nav-link" href="#link-prediction-recommender-systems">
+     Link Prediction: Recommender Systems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#link-level-example-drug-side-effects">
-     Link level Example: Drug Side Effects
+    <a class="reference internal nav-link" href="#graph-link-prediction-drug-side-effects">
+     Graph Link Prediction: Drug Side Effects
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#subgraph-level-example-traffic-prediction">
-     Subgraph level Example: Traffic Prediction
+    <a class="reference internal nav-link" href="#subgraph-prediction-traffic-prediction">
+     Subgraph Prediction: Traffic Prediction
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -377,11 +382,16 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#options-when-constructing-graphs">
-     Options when constructing graphs
+    <a class="reference internal nav-link" href="#constructing-graphs">
+     Constructing Graphs
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
  </li>
 </ul>
 
@@ -403,13 +413,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#types-of-data-are-graphs">
-   Types of Data are Graphs
+  <a class="reference internal nav-link" href="#why-graphs">
+   Why Graphs?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graph-algorithms">
-   Graph Algorithms
+  <a class="reference internal nav-link" href="#how-to-model-relational-structure-in-graphs">
+   How to model relational structure in graphs?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-ml-tools">
+   Graph ML Tools
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -418,23 +433,23 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#node-level-example-protein-folding">
-     Node level Example: Protein Folding
+    <a class="reference internal nav-link" href="#node-classification-protein-folding">
+     Node Classification: Protein Folding
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#link-level-example-recommender-systems">
-     Link level Example: Recommender Systems
+    <a class="reference internal nav-link" href="#link-prediction-recommender-systems">
+     Link Prediction: Recommender Systems
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#link-level-example-drug-side-effects">
-     Link level Example: Drug Side Effects
+    <a class="reference internal nav-link" href="#graph-link-prediction-drug-side-effects">
+     Graph Link Prediction: Drug Side Effects
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#subgraph-level-example-traffic-prediction">
-     Subgraph level Example: Traffic Prediction
+    <a class="reference internal nav-link" href="#subgraph-prediction-traffic-prediction">
+     Subgraph Prediction: Traffic Prediction
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -460,11 +475,16 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#options-when-constructing-graphs">
-     Options when constructing graphs
+    <a class="reference internal nav-link" href="#constructing-graphs">
+     Constructing Graphs
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
  </li>
 </ul>
 
@@ -478,95 +498,101 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="task-1-introduction">
 <h1>Task 1: Introduction<a class="headerlink" href="#task-1-introduction" title="Permalink to this headline">#</a></h1>
-<p>Graphs are a general language for describing and analyzing entities with relations/Interactions</p>
-<section id="types-of-data-are-graphs">
-<h2>Types of Data are Graphs<a class="headerlink" href="#types-of-data-are-graphs" title="Permalink to this headline">#</a></h2>
-<p>Many types of data can be represented as graphs and modeling these graphical relations allows to capture the relationships between different objects or entities. Through which, we can understand the underlying phenomena in different domains.</p>
+<section id="why-graphs">
+<h2>Why Graphs?<a class="headerlink" href="#why-graphs" title="Permalink to this headline">#</a></h2>
+<p>Graphs are a general language for describing and analyzing entities with relations/Interactions. Many types of data can be represented as graphs. Here are examples:</p>
 <ul class="simple">
+<li><p>Computer Networks</p></li>
+<li><p>Disease Pathways</p></li>
+<li><p>Food Webs</p></li>
+<li><p>Particle Networks</p></li>
+<li><p>Underground Networks</p></li>
+<li><p>Event Graphs</p></li>
 <li><p>Social Networks</p></li>
 <li><p>Economic Networks</p></li>
 <li><p>Communication Networks</p></li>
 <li><p>Citation Networks</p></li>
 <li><p>Internet</p></li>
 <li><p>Network for Neurons</p></li>
-<li><p>Knowledge Graphs: describe knowledge</p></li>
-<li><p>Regulatory Networks: describe the regulatory mechanisms as processes governed by the connections between different entities.</p></li>
+<li><p>Knowledge Graphs:</p></li>
+<li><p>Regulatory Networks</p></li>
 <li><p>Scene Graphs</p></li>
-<li><p>Code Graphs: describe the software as a graph of calls among functions</p></li>
+<li><p>Code Graphs</p></li>
 <li><p>Molecules</p></li>
 <li><p>3D Shapes</p></li>
 </ul>
-<p>How do we take advantage of relational structure for better prediction?
-Complex domains have a rich relational structure, which cna be represented as relational graph. By explicitly modeling relationships we achieve better performance.</p>
-<p>Modern Deep learning tool box is designed for simple sequences(Text) &amp; grids(Imges). Networks are complex with the following characteristics:</p>
+<p>Modeling these graphical relations allows us to capture the relationships between different objects or entities. Through which, we can understand the underlying phenomena in different domains.</p>
+</section>
+<section id="how-to-model-relational-structure-in-graphs">
+<h2>How to model relational structure in graphs?<a class="headerlink" href="#how-to-model-relational-structure-in-graphs" title="Permalink to this headline">#</a></h2>
+<p>Complex domains have a rich relational structure, which can be represented as relational graph. By explicitly modeling relationships we achieve better performance.</p>
+<p>Traditional Machine Learning spend a lot of time on feature engineering to capture the structure of the data so that machine learning models can take advantage of.</p>
+<p>Alternatively, deep neural networks can be used to automatically learn a good representation of the graph. The learned representation can be used for down stream machine learning algorithm.</p>
+<p>The problem is that modern Deep learning tool box is designed for simple sequences(Text) &amp; grids(Images). But graphs are complex because of the following characteristics:</p>
 <ul class="simple">
 <li><p>Arbitrary size and complex topological structure</p></li>
 <li><p>No fixed ordering or reference points</p></li>
 <li><p>often dynamic and have multi-modal features</p></li>
 </ul>
 <p>How can we develop neural networks that are much more broadly applicable? so that we can use for graphs.</p>
-<ul class="simple">
-<li><p>Input: Networks</p></li>
-<li><p>Output/Predictions: Node Labels, New Links, Generated graphs and subgraphs</p></li>
-</ul>
-<p>Traditional Machine Learning spend a lot of time on feature engineering to capture the structure of the data so that machine learning models can take advantage of.</p>
-<p>In this case, it will mostly about representation learning where feature engineer is removed. But instead, we can automatically learn a good representation so that it can be used for down stream machine learning algorithm.</p>
-<p>Representation Learning is to map nodes to d-dimensional embeddings such that similar nodes in the network are embedded close together in the embedding space.</p>
 <p>The courses covers various topic in Machine Learning and representation Learning for Graph Structured data:</p>
 <ul class="simple">
 <li><p>Traditional methods: Graphlets, Graph kernels</p></li>
 <li><p>Node Embeddings: DeepWalk, Node2Vec</p></li>
-<li><p>Graph Neural Networks: GCN, GraphSAGE, GAT, Theory of GNNs.</p></li>
+<li><p>Graph Neural Networks: GCN, GraphSAGE, Graph attention Network, Theory of GNNs.</p></li>
 <li><p>Knowledge Graphs and reasoning: TransE, BetaE</p></li>
-<li><p>Deep Generative Model for Graphs</p></li>
-<li><p>Applications in Biomedicine, Science and fraud detection, recommender system.</p></li>
+<li><p>Deep Generative Model for Graphs: Graph RNN.</p></li>
+<li><p>Applications in Biomedicine, Science, and fraud detection, recommender system.</p></li>
 </ul>
 </section>
-<section id="graph-algorithms">
-<h2>Graph Algorithms<a class="headerlink" href="#graph-algorithms" title="Permalink to this headline">#</a></h2>
+<section id="graph-ml-tools">
+<h2>Graph ML Tools<a class="headerlink" href="#graph-ml-tools" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Pathfinding &amp; Search</p></li>
-<li><p>Centrality / Importance</p></li>
-<li><p>Community Detection</p></li>
-<li><p>Link prediction</p></li>
-<li><p>Similarity</p></li>
-<li><p>Embeddings</p></li>
+<li><p>Graph Neural Networks: <a class="reference external" href="http://www.pyg.org/">PyG(PyTorch Geometric)</a>, GraphGym, <a class="reference external" href="https://www.dgl.ai/">DGL</a></p></li>
+<li><p>Network Analytics: <a class="reference external" href="http://SNAP.PY">SNAP.PY</a>, <span class="xref myst">NetworkX</span></p></li>
+<li><p>Graph Visualizations: <a class="reference external" href="echarts.apache.org/examples/zh/index.html#chart-type-graphGL">Echarts</a>, <span class="xref myst">AntV</span></p></li>
+<li><p>Graph Databases: Neo4j, Microsoft Azure Cosmos DB</p></li>
 </ul>
 </section>
 <section id="applications-of-graph-ml">
 <h2>Applications of Graph ML<a class="headerlink" href="#applications-of-graph-ml" title="Permalink to this headline">#</a></h2>
+<p>50+ graph algorithms are implemented in Neo4j[3]. There are different types of tasks:</p>
 <ul class="simple">
 <li><p>Node Classification: predict a property of a node. e.g. Categorize online users or items</p></li>
 <li><p>Link Prediction: predict whether there are missing links between nodes. e.g. Knowledge graph completion</p></li>
 <li><p>Graph classification: categorize different graphs. Molecule property prediction</p></li>
 <li><p>Clustering: detect if nodes form a community. e.g. Social Circle detection.</p></li>
-<li><p>Graph Generation: Drug discovery</p></li>
+<li><p>Graph Generation: generate a new graph. e.g. Drug discovery</p></li>
 <li><p>Graph Evolution: Physical Simulation.</p></li>
 </ul>
-<section id="node-level-example-protein-folding">
-<h3>Node level Example: Protein Folding<a class="headerlink" href="#node-level-example-protein-folding" title="Permalink to this headline">#</a></h3>
-<p>Every protein is made up a sequence of amino acids bonded together.  There amino acids interact locally</p>
+<section id="node-classification-protein-folding">
+<h3>Node Classification: Protein Folding<a class="headerlink" href="#node-classification-protein-folding" title="Permalink to this headline">#</a></h3>
+<p>Every protein is made up a sequence of amino acids bonded together.  There amino acids interact locally to form shapes like helices and sheets. These shapes fold up on a larger scales to form the full three-dimensional protein structure. Proteins can interact with other proteins perform functions such as signaling and transcribing DNA.</p>
+<p><a class="reference external" href="https://www.deepmind.com/blog/putting-the-power-of-alphafold-into-the-worlds-hands">AlphaFold</a> is an AI system developed by DeepMind that predicts a protein’s 3D structure from its amino acid sequence.</p>
+<p>The graph can be constructed:</p>
 <ul class="simple">
 <li><p>nodes: amino acids in a protein sequence</p></li>
-<li><p>Edges:</p></li>
+<li><p>Edges: Proximity between amino acids (residues)</p></li>
 </ul>
 </section>
-<section id="link-level-example-recommender-systems">
-<h3>Link level Example: Recommender Systems<a class="headerlink" href="#link-level-example-recommender-systems" title="Permalink to this headline">#</a></h3>
-<p>Predict whether two nodes in a graph are related.</p>
-<p>Users interacts with items</p>
+<section id="link-prediction-recommender-systems">
+<h3>Link Prediction: Recommender Systems<a class="headerlink" href="#link-prediction-recommender-systems" title="Permalink to this headline">#</a></h3>
+<p>In the scenario of watching movies, buying products, and listening to music, we want to recommend items users might like.</p>
+<p>The graph can be constructed:</p>
 <ul class="simple">
-<li><p>Watch moives</p></li>
+<li><p>Nodes: Users and items</p></li>
+<li><p>Edges: User-item interactions</p></li>
 </ul>
+<p>Predict whether two nodes in a graph are related.</p>
 </section>
-<section id="link-level-example-drug-side-effects">
-<h3>Link level Example: Drug Side Effects<a class="headerlink" href="#link-level-example-drug-side-effects" title="Permalink to this headline">#</a></h3>
+<section id="graph-link-prediction-drug-side-effects">
+<h3>Graph Link Prediction: Drug Side Effects<a class="headerlink" href="#graph-link-prediction-drug-side-effects" title="Permalink to this headline">#</a></h3>
 <p>Many patients take multiple drugs to treat complex or co-existing disease.</p>
 <ul class="simple">
 <li><p>46% people ages 70-79 take more 5 drugs</p></li>
-<li><p>Many patients take more than 20 drugs</p></li>
+<li><p>Many patients take more than 20 drugs to treat heart disease, depression, insomnia, etc.</p></li>
 </ul>
-<p>Task: predict adverse side effect for a given pair of drugs. e.g. How likely will Simvastatin and Ciprofloxacin when taken together , break down muscle tissue?</p>
+<p>Task: predict adverse side effect for a given pair of drugs. e.g. How likely will Simvastatin and Ciprofloxacin when taken together, break down muscle tissue?</p>
 <p>The graph can be constructed:</p>
 <ul class="simple">
 <li><p>Nodes: Drugs &amp; Proteins</p></li>
@@ -574,18 +600,24 @@ Complex domains have a rich relational structure, which cna be represented as re
 </ul>
 <p>The task is essentially predict missing edge/link.</p>
 </section>
-<section id="subgraph-level-example-traffic-prediction">
-<h3>Subgraph level Example: Traffic Prediction<a class="headerlink" href="#subgraph-level-example-traffic-prediction" title="Permalink to this headline">#</a></h3>
+<section id="subgraph-prediction-traffic-prediction">
+<h3>Subgraph Prediction: Traffic Prediction<a class="headerlink" href="#subgraph-prediction-traffic-prediction" title="Permalink to this headline">#</a></h3>
+<p>From a starting point/location to a destination, we want to predict how long it takes to arrive the destination.</p>
+<p>The graph can be constructed:</p>
+<ul class="simple">
+<li><p>Nodes: Road segments</p></li>
+<li><p>Edges: Connectivity between road segments</p></li>
+</ul>
 </section>
 <section id="graph-classification-drug-discovery">
 <h3>Graph Classification: Drug Discovery<a class="headerlink" href="#graph-classification-drug-discovery" title="Permalink to this headline">#</a></h3>
+<p>In the scenario of predicting promising molecules from a pool of candidates. The predicted promising molecules can be further tested in the lab. This helps with discover drugs quickly and more efficiently.</p>
 <p>Antibiotics are small molecular graphs</p>
 <ul class="simple">
 <li><p>Nodes: Atoms</p></li>
 <li><p>Edges: Chemical Bonds</p></li>
 </ul>
-<p>Task: predict promising molecules from a pool of candidates.</p>
-<p>The predicted promising molecules can be further tested in the lab. This helps with discover drugs quickly and more efficiently.</p>
+<p>The task is essentially graph classification.</p>
 </section>
 <section id="graph-generation-generating-novel-molecules">
 <h3>Graph Generation: Generating Novel Molecules<a class="headerlink" href="#graph-generation-generating-novel-molecules" title="Permalink to this headline">#</a></h3>
@@ -618,12 +650,18 @@ Complex domains have a rich relational structure, which cna be represented as re
 <li><p>Interactions: links, edges. Denoted as  <span class="math notranslate nohighlight">\(E\)</span></p></li>
 </ul>
 <p>We may have different options for constructing networks. Choice of the proper network representation of a given domain determines our ability to use network successfully.</p>
-<section id="options-when-constructing-graphs">
-<h3>Options when constructing graphs<a class="headerlink" href="#options-when-constructing-graphs" title="Permalink to this headline">#</a></h3>
+<section id="constructing-graphs">
+<h3>Constructing Graphs<a class="headerlink" href="#constructing-graphs" title="Permalink to this headline">#</a></h3>
 <p>Graphs can be undirected or directed. Examples of undirected graphs are collaborations, friendship on facebook. Examples of directed graphs are phone calls, financial transactions and following on Twitter.</p>
 <p>Node degrees. For undirected, node degree is the number of edges adjacent to node <span class="math notranslate nohighlight">\(i\)</span> For directed graphs, we can further define in-degree and out-degree. The degree of a node is sum of in and out degrees.</p>
 <p>Bipartite is a type of graph structure whose nodes can be divided into two disjoint set U and V such that every links connect a node in U to one in V.  Examples of Bipartite graphs are Authors-to-Papers(they are authored), Actors-to-Movies(they are appeared in), Users-to-Movies(they rated), Recipes-to-Ingredients(they contain). Bipartite can be projected as Folded networks. For example Authors-to-Papers(they are authored) can be projected as author collaboration networks.</p>
 </section>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">#</a></h2>
+<p>[1]<a class="reference external" href="https://www.youtube.com/watch?v=P-m1Qv6-8cI&amp;list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn&amp;index=1">Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
+<p>[2]<a class="reference external" href="https://www.bilibili.com/video/BV1pR4y1S7GA/?spm_id_from=333.788&amp;vd_source=fccde7883fbf93ac15b03dee298f9f18">斯坦福CS224W图机器学习、图神经网络、知识图谱【同济子豪兄】</a></p>
+<p>[3]<a class="reference external" href="https://neo4j.com/docs/graph-data-science/current/algorithms/">Graph Algorithms, Neo4j.</a></p>
 </section>
 </section>
 
