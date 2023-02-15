@@ -154,7 +154,7 @@ Node degrees. For undirected, node degree is the number of edges adjacent to nod
 
 Bipartite is a type of graph structure whose nodes can be divided into two disjoint set U and V such that every links connect a node in U to one in V.  Examples of Bipartite graphs are Authors-to-Papers(they are authored), Actors-to-Movies(they are appeared in), Users-to-Movies(they rated), Recipes-to-Ingredients(they contain). Bipartite can be projected as Folded networks. For example Authors-to-Papers(they are authored) can be projected as author collaboration networks. 
 
-## Reference
+## References
 \[1\][Stanford CS224W: Machine Learning with Graphs | 2021](https://www.youtube.com/watch?v=P-m1Qv6-8cI&list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn&index=1)
 
 \[2\][斯坦福CS224W图机器学习、图神经网络、知识图谱【同济子豪兄】](https://www.bilibili.com/video/BV1pR4y1S7GA/?spm_id_from=333.788&vd_source=fccde7883fbf93ac15b03dee298f9f18)
