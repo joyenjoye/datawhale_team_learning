@@ -564,7 +564,7 @@ title="Print to PDF"
 <p>This posts will cover traditional features for node/link/graph level prediction for undirected graphs.</p>
 <section id="node-level-tasks-and-features">
 <h2>Node Level Tasks and Features<a class="headerlink" href="#node-level-tasks-and-features" title="Permalink to this headline">#</a></h2>
-<p>Node classification is a supervised machine learning (ML) approach whereby existing nodes with known classes can be used to train a model that will learn the classes for nodes where they are unknown<a class="reference external" href="https://neo4j.com/developer/graph-data-science/node-classification/">[3]</a>.</p>
+<p><a class="reference external" href="https://neo4j.com/developer/graph-data-science/node-classification/">Node classification</a> is a supervised machine learning (ML) approach whereby existing nodes with known classes can be used to train a model that will learn the classes for nodes where they are unknown.</p>
 <p>There are different ways to characterize the structure and position of a node in the network.</p>
 <p><strong>Importance based features</strong> capture the importance of a node in graph. This type of features is useful for predicting influential nodes in a graph.e.g.predicting celebrity users in a social network.</p>
 <ul class="simple">
@@ -606,8 +606,9 @@ protein protein interaction network.</p>
 </section>
 <section id="closeness-centrality">
 <h4>Closeness centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">#</a></h4>
-<p>The intution behind closeness centrality is that a node is important if it has small shortest path lengths to all other nodes. Mathematically, It is defined as follows:
-$<span class="math notranslate nohighlight">\(c_v = \frac{1}{\sum_{u\not =v}d_{uv}}\)</span>$</p>
+<p>The intution behind closeness centrality is that a node is important if it has small shortest path lengths to all other nodes. Mathematically, It is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[c_v = \frac{1}{\sum_{u\not =v}d_{uv}}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(d_{uv}\)</span> is the shorest path length betwen <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </section>
 </section>
@@ -657,13 +658,20 @@ $<span class="math notranslate nohighlight">\(c_v = \frac{1}{\sum_{u\not =v}d_{u
 <h3>Local Neighborhood Overlap<a class="headerlink" href="#local-neighborhood-overlap" title="Permalink to this headline">#</a></h3>
 <p>The idea here is to capture the number of neighboring nodes shared between two nodes <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>.</p>
 <ul class="simple">
-<li><p><strong>Common Neighbors</strong>
-$<span class="math notranslate nohighlight">\(N(v_1)\cap N(v_2)\)</span>$</p></li>
-<li><p><strong>Jaccard’s Coefficient</strong>
-$<span class="math notranslate nohighlight">\(\frac{N(v_1)\cap N(v_2)}{N(v_1)\cup N(v_2)}\)</span>$</p></li>
-<li><p><strong>Adamic-Adar Index</strong>
-$<span class="math notranslate nohighlight">\(\sum_{u\in N(v_1)\cap N(v_2))}\frac{1}{log(k_u)}\)</span>$</p></li>
+<li><p><strong>Common Neighbors</strong></p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[N(v_1)\cap N(v_2)\]</div>
+<ul class="simple">
+<li><p><strong>Jaccard’s Coefficient</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{N(v_1)\cap N(v_2)}{N(v_1)\cup N(v_2)}\]</div>
+<ul class="simple">
+<li><p><strong>Adamic-Adar Index</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sum_{u\in N(v_1)\cap N(v_2))}\frac{1}{log(k_u)}\]</div>
 </section>
 <section id="global-neighborhood-overlap">
 <h3>Global Neighborhood overlap<a class="headerlink" href="#global-neighborhood-overlap" title="Permalink to this headline">#</a></h3>
@@ -707,29 +715,45 @@ vector <span class="math notranslate nohighlight">\(\mathcal{f}_G \in \mathbb{R}
 <p>When <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(G'\)</span> have different sizes, it can will greatly skew the value. To address this, we can normalize each feature vector:</p>
 <div class="math notranslate nohighlight">
 \[K(G,G')={\mathcal{h}_G}^T\mathcal{h}_{G'} \]</div>
-<p>Where $<span class="math notranslate nohighlight">\(\mathcal{h}_G = \frac{\mathcal{f}_G}{\sum{\mathcal{f}_G}} \)</span>$</p>
-<p>The limitation is that counting graphlets is expensive.</p>
+<p>Where <span class="math notranslate nohighlight">\(\mathcal{h}_G = \frac{\mathcal{f}_G}{\sum{\mathcal{f}_G}}\)</span>.</p>
+</section>
+<section id="weisfeiler-lehman-wl-kernel">
+<h3>Weisfeiler-Lehman (WL) Kernel<a class="headerlink" href="#weisfeiler-lehman-wl-kernel" title="Permalink to this headline">#</a></h3>
+<p>When using graphlet kernel, counting graphlets is expensive.</p>
 <ul class="simple">
 <li><p>Counting size-<span class="math notranslate nohighlight">\(k\)</span> graphlets for a graph with size <span class="math notranslate nohighlight">\(n\)</span> by enumeration takes <span class="math notranslate nohighlight">\(n^k\)</span>.</p></li>
 <li><p>This is unavoidable in the worst-case since subgraph isomorphism test (judging whether a graph is a subgraph of another graph) is NP-hard.</p></li>
 <li><p>If a graph’s node degree is bounded by <span class="math notranslate nohighlight">\(n\)</span> , an <span class="math notranslate nohighlight">\(O(nd^{k-1})\)</span>  algorithm exists to count all the graphlets of size <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 </ul>
-</section>
-<section id="weisfeiler-lehman-wl-kernel">
-<h3>Weisfeiler-Lehman (WL) Kernel<a class="headerlink" href="#weisfeiler-lehman-wl-kernel" title="Permalink to this headline">#</a></h3>
-<p><em><strong>Weisfeiler-Lehman (WL) Kernel</strong></em> use neighborhood structure to iteratively enrich node vocabulary.</p>
-<p>It use generalized version of Bag of node degrees and is achieved with the color refinement algorithm.</p>
+<p>Can we design a more efficient graph kernel?</p>
+<p><em><strong>Weisfeiler-Lehman (WL) Kernel</strong></em> use neighborhood structure to iteratively enrich node vocabulary. It uses a generalized version of bag of node degrees. It can be achieved with the <strong>color refinement algorithm</strong>. Given a graph <span class="math notranslate nohighlight">\(G\)</span> with a set of node <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<ul>
+<li><p>Assgin an initial color <span class="math notranslate nohighlight">\(c^{(0)}(v)\)</span> to each node <span class="math notranslate nohighlight">\(v\)</span>.</p></li>
+<li><p>Iteractively refine node colors by</p>
+<div class="math notranslate nohighlight">
+\[c^{(k+1)}(v) = \mathrm{HASH}(\{c^{(k)}(v)\},\{c^{(k)}(u)\}_{u\in N(v)}\})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathrm{HASH}\)</span> maps different inputs to different colors.</p>
+</li>
+<li><p>After <span class="math notranslate nohighlight">\(K\)</span> steps of color refinement, <span class="math notranslate nohighlight">\(c^{(k)}(v)\)</span> summarizes the structure of <span class="math notranslate nohighlight">\(K-hop\)</span> neighborhood.</p></li>
+</ul>
 <p>After color refinement, WL kernel counts number of nodes with a given color. The WL kernel value is computed by the inner product of the color count vectors.</p>
+<p>WL kernel is computationally efficient.</p>
+<ul class="simple">
+<li><p>The time complexity for color refinement is <span class="math notranslate nohighlight">\(O(K*n_{edge})\)</span> where <span class="math notranslate nohighlight">\(n_{edge}\)</span> is the number of edges in the graph.</p></li>
+<li><p>The time complexity for kernel value computing is <span class="math notranslate nohighlight">\(O(n_{node})\)</span> where <span class="math notranslate nohighlight">\(n_{node}\)</span> is the number of nodes in the graph.</p></li>
+<li><p>In total, time complexity is linear in the numebr of edges.</p></li>
+</ul>
 </section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<p>[1]<a class="reference external" href="https://www.youtube.com/watch?v=P-m1Qv6-8cI&amp;list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn&amp;index=1">Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
-<p>[2]<a class="reference external" href="https://www.bilibili.com/video/BV1HK411175s/?spm_id_from=333.788&amp;vd_source=fccde7883fbf93ac15b03dee298f9f18">传统图机器学习的特征工程-节点【斯坦福CS224W】</a></p>
-<p>[3]<a class="reference external" href="https://www.bilibili.com/video/BV1r3411m7sD/?spm_id_from=333.788">传统图机器学习的特征工程-连接【斯坦福CS224W】</a></p>
-<p>[4]<a class="reference external" href="https://www.bilibili.com/video/BV1r3411m7sD/?spm_id_from=333.788">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></p>
-<p>[5] Shervashidze, Nino, et al. “Efficient graphlet kernels for large graph comparison.” Artificial Intelligence and Statistics. 2009.</p>
-<p>[6] Shervashidze, Nino, et al. “Weisfeiler-lehman graph kernels.” Journal of Machine Learning Research 12.9 (2011).</p>
+<p>[1]<a class="reference external" href="https://www.youtube.com/watch?v=P-m1Qv6-8cI&amp;list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn&amp;index=1">Featuer Engieering Youtube. Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
+<p>[2]<a class="reference external" href="http://web.stanford.edu/class/cs224w/slides/02-tradition-ml.pdf">Featuer Engieering Slides. Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
+<p>[3]<a class="reference external" href="https://www.bilibili.com/video/BV1HK411175s/?spm_id_from=333.788&amp;vd_source=fccde7883fbf93ac15b03dee298f9f18">传统图机器学习的特征工程-节点【斯坦福CS224W】</a></p>
+<p>[4]<a class="reference external" href="https://www.bilibili.com/video/BV1r3411m7sD/?spm_id_from=333.788">传统图机器学习的特征工程-连接【斯坦福CS224W】</a></p>
+<p>[5]<a class="reference external" href="https://www.bilibili.com/video/BV1r3411m7sD/?spm_id_from=333.788">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></p>
+<p>[6] Shervashidze, Nino, et al. “Efficient graphlet kernels for large graph comparison.” Artificial Intelligence and Statistics. 2009.</p>
+<p>[7] Shervashidze, Nino, et al. “Weisfeiler-lehman graph kernels.” Journal of Machine Learning Research 12.9 (2011).</p>
 </section>
 </section>
 
