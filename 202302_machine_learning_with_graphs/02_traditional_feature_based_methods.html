@@ -198,6 +198,35 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202302_machine_learning_with_graphs/02_traditional_feature_based_methods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -265,7 +294,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/202302_machine_learning_with_graphs/02_traditional_feature_based_methods.md"
+        <a href="../_sources/202302_machine_learning_with_graphs/02_traditional_feature_based_methods.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -276,7 +305,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -338,18 +367,74 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#node-centrality">
      Node centrality
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#engienvector-centrality">
+       Engienvector centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#betweenness-centrality">
+       Betweenness centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#closeness-centrality">
+       Closeness centrality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering-coefficient">
+     Clustering Coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphlet-degree-vector">
+     Graphlet Degree Vector
+    </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#link-prediction-task-and-features">
-   Link Prediction Task and Features
+  <a class="reference internal nav-link" href="#link-prediction-tasks-and-features">
+   Link Prediction Tasks and Features
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distance-based-features">
+     Distance-based Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-neighborhood-overlap">
+     Local Neighborhood Overlap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#global-neighborhood-overlap">
+     Global Neighborhood overlap
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graph">
-   Graph
+  <a class="reference internal nav-link" href="#graph-level-features-and-graph-kernels">
+   Graph-Level Features and Graph Kernels
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphlet-kernel">
+     Graphlet Kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weisfeiler-lehman-wl-kernel">
+     Weisfeiler-Lehman (WL) Kernel
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
@@ -389,18 +474,74 @@ title="Print to PDF"
     <a class="reference internal nav-link" href="#node-centrality">
      Node centrality
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#engienvector-centrality">
+       Engienvector centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#betweenness-centrality">
+       Betweenness centrality
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#closeness-centrality">
+       Closeness centrality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering-coefficient">
+     Clustering Coefficient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphlet-degree-vector">
+     Graphlet Degree Vector
+    </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#link-prediction-task-and-features">
-   Link Prediction Task and Features
+  <a class="reference internal nav-link" href="#link-prediction-tasks-and-features">
+   Link Prediction Tasks and Features
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distance-based-features">
+     Distance-based Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-neighborhood-overlap">
+     Local Neighborhood Overlap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#global-neighborhood-overlap">
+     Global Neighborhood overlap
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graph">
-   Graph
+  <a class="reference internal nav-link" href="#graph-level-features-and-graph-kernels">
+   Graph-Level Features and Graph Kernels
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphlet-kernel">
+     Graphlet Kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weisfeiler-lehman-wl-kernel">
+     Weisfeiler-Lehman (WL) Kernel
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
@@ -424,15 +565,29 @@ title="Print to PDF"
 <section id="node-level-tasks-and-features">
 <h2>Node Level Tasks and Features<a class="headerlink" href="#node-level-tasks-and-features" title="Permalink to this headline">#</a></h2>
 <p>Node classification is a supervised machine learning (ML) approach whereby existing nodes with known classes can be used to train a model that will learn the classes for nodes where they are unknown<a class="reference external" href="https://neo4j.com/developer/graph-data-science/node-classification/">[3]</a>.</p>
-<p>Characterize the structure and position of a node in the network</p>
+<p>There are different ways to characterize the structure and position of a node in the network.</p>
+<p><strong>Importance based features</strong> capture the importance of a node in graph. This type of features is useful for predicting influential nodes in a graph.e.g.predicting celebrity users in a social network.</p>
+<ul class="simple">
+<li><p>Node degree</p></li>
+<li><p>Different node centrality measures</p></li>
+</ul>
+<p><strong>Structure based features</strong> : Capture topological properties of local neighborhood around a node.Useful for predicting a particular role a node plays in a graph. e.g. Predicting protein functionality in a
+protein protein interaction network.</p>
+<ul class="simple">
+<li><p>Node degree</p></li>
+<li><p>Clustering coefficient</p></li>
+<li><p>Graphlet count vector</p></li>
+</ul>
 <section id="node-degree">
 <h3>Node Degree<a class="headerlink" href="#node-degree" title="Permalink to this headline">#</a></h3>
-<p>the degree <span class="math notranslate nohighlight">\(k_v\)</span> of node <span class="math notranslate nohighlight">\(v\)</span> is the number of edges (neighboring nodes) the node has. Treats all neighboring nodes equally</p>
+<p>The degree <span class="math notranslate nohighlight">\(k_v\)</span> of node <span class="math notranslate nohighlight">\(v\)</span> is the number of edges (neighboring nodes) the node has. Treats all neighboring nodes equally</p>
 </section>
 <section id="node-centrality">
 <h3>Node centrality<a class="headerlink" href="#node-centrality" title="Permalink to this headline">#</a></h3>
 <p>Node centrality <span class="math notranslate nohighlight">\(C_v\)</span> takes the node importance in a graph into account. There are different ways to model importance.</p>
-<p><strong>Engienvector centrality</strong> model the centrality of node <span class="math notranslate nohighlight">\(v\)</span> as the sum of the centrality of neighboring nodes:</p>
+<section id="engienvector-centrality">
+<h4>Engienvector centrality<a class="headerlink" href="#engienvector-centrality" title="Permalink to this headline">#</a></h4>
+<p>Engienvector centrality models the centrality of node <span class="math notranslate nohighlight">\(v\)</span> as the sum of the centrality of neighboring nodes:</p>
 <div class="math notranslate nohighlight">
 \[c_v = \frac{1}{\lambda}\sum_{u \in N(v)}{c_u}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\lambda\)</span> is normalization constant. It will turn out to be the largest eigenvalue of A.</p>
@@ -441,23 +596,51 @@ title="Print to PDF"
 \[\lambda c = A\mathbb{c}\]</div>
 <p>Where A is adjacent matrix, <span class="math notranslate nohighlight">\(A_uv=1\)</span> if <span class="math notranslate nohighlight">\(u \in N(v)\)</span>. <span class="math notranslate nohighlight">\(c\)</span> is centrality vector and <span class="math notranslate nohighlight">\(\lambda\)</span> is eigenvalue.</p>
 <p>By Perron-Frobenius Theorem, The largest eigenvalue <span class="math notranslate nohighlight">\(\lambda_{max}\)</span> is always positive and unique. And The eigenvector <span class="math notranslate nohighlight">\(c_{max}\)</span>  corresponding to <span class="math notranslate nohighlight">\(\lambda_{max}\)</span> is used for centrality.</p>
-<p>The intution behind <strong>Betweenness centrality</strong> is that A node is important if it lies on many shortest
-paths between other nodes. Mathematically, It is defined as follows:</p>
+</section>
+<section id="betweenness-centrality">
+<h4>Betweenness centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">#</a></h4>
+<p>The intution behind betweenness centrality is that a node is important if it lies on many shortest paths between other nodes. Mathematically, It is defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[c_v = \sum_{s\not =v\not ={t}}\frac{n_1}{n_2}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(n_1\)</span> is the number of shorted paths between <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span> that contains <span class="math notranslate nohighlight">\(v\)</span>. and <span class="math notranslate nohighlight">\(n_2\)</span> is the number of shorted paths between <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>Closeness centrality.</p>
+</section>
+<section id="closeness-centrality">
+<h4>Closeness centrality<a class="headerlink" href="#closeness-centrality" title="Permalink to this headline">#</a></h4>
+<p>The intution behind closeness centrality is that a node is important if it has small shortest path lengths to all other nodes. Mathematically, It is defined as follows:
+$<span class="math notranslate nohighlight">\(c_v = \frac{1}{\sum_{u\not =v}d_{uv}}\)</span>$</p>
+<p>Where <span class="math notranslate nohighlight">\(d_{uv}\)</span> is the shorest path length betwen <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </section>
 </section>
-<section id="link-prediction-task-and-features">
-<h2>Link Prediction Task and Features<a class="headerlink" href="#link-prediction-task-and-features" title="Permalink to this headline">#</a></h2>
+<section id="clustering-coefficient">
+<h3>Clustering Coefficient<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">#</a></h3>
+<p>Clustering Coefficient measures how connected <span class="math notranslate nohighlight">\(v\)</span>’s neighboring nodes are. Mathematically, It is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[e_v = \frac{n}{k_v \choose 2}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(n\)</span> is the number of edges among neighboring nodes.<span class="math notranslate nohighlight">\(k_v \choose 2\)</span> means choose 2 nodes among <span class="math notranslate nohighlight">\(k_v\)</span> neighboring nodes for node for node <span class="math notranslate nohighlight">\(v\)</span>, i.e. it is the number of node pairs among the neighboring nodes for node for node <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</section>
+<section id="graphlet-degree-vector">
+<h3>Graphlet Degree Vector<a class="headerlink" href="#graphlet-degree-vector" title="Permalink to this headline">#</a></h3>
+<p>Clustering Coefficient essentially counts the number of triangles in the ego-network. Here ego-network of a given node refers a subgraph induced by the node itself and its neighbors. It is basically its degree-1 neighborhood network.</p>
+<p>We can generalize clustering coefficient by counting the number of pre-specified subgraphs, i.e., graphlets.</p>
+<p>For a given node <span class="math notranslate nohighlight">\(v\)</span>, graphlets are small subgraphs that describe the structure of node <span class="math notranslate nohighlight">\(v\)</span>’s network neighborhood.</p>
+<p>To formally define graphlets, let’s introduce the following 2 concepts:</p>
+<ul class="simple">
+<li><p><em><strong>Induced Subgraph</strong></em> is another graph, formed from a subset of vertices and all the edges connecting the vertices in the subsets.</p></li>
+<li><p><em><strong>Graph Isomorphism</strong></em> two graphs which contains the same number of nodes connected in the same way are said to be isomorphic.</p></li>
+</ul>
+<p><strong>Graphlets</strong> are rooted connected induced non-isomorphic subgraphs.</p>
+<p><strong>Graphlet Degree Vector (GDV)</strong> is a graphlet-based feature which count the number of graphlets for a given node. It provides a measure of <strong>a node’s local network topology</strong>. It allows more detailed and comprehensive measure of local topological similarity than node degrees or clustering coefficent.</p>
+</section>
+</section>
+<section id="link-prediction-tasks-and-features">
+<h2>Link Prediction Tasks and Features<a class="headerlink" href="#link-prediction-tasks-and-features" title="Permalink to this headline">#</a></h2>
 <p>Link Prediction is to predict new links based on the existing links. At test time, node pairs (with no existing links) are ranked, and top <span class="math notranslate nohighlight">\(K\)</span> node pairs are predicted. The key is to design features for a pair of nodes.</p>
 <p>Two formulations of the link prediction task:</p>
 <ul class="simple">
-<li><p>Links missing at random: Remove a random set of links and then aim to predict them.</p></li>
-<li><p>Links over time: given a graph <span class="math notranslate nohighlight">\(G[t_{0},t_{0}^{'}]\)</span> defined by edges up to time <span class="math notranslate nohighlight">\(t_{0}^{'}\)</span> output a ranked List L of edges that not in <span class="math notranslate nohighlight">\(G[t_{0},t_{0}^{'}]\)</span> that are predicted to appear in time <span class="math notranslate nohighlight">\(G[t_{1},t_{1}^{'}]\)</span>. To evaluate, count how many edges in <span class="math notranslate nohighlight">\(L\)</span> are real new edge that appear during the test period.</p></li>
+<li><p><strong>Links missing at random</strong>: remove a random set of links and then aim to predict them.</p></li>
+<li><p><strong>Links over time</strong>: given a graph <span class="math notranslate nohighlight">\(G[t_{0},t_{0}^{'}]\)</span> defined by edges up to time <span class="math notranslate nohighlight">\(t_{0}^{'}\)</span> output a ranked List L of edges that not in <span class="math notranslate nohighlight">\(G[t_{0},t_{0}^{'}]\)</span> that are predicted to appear in time <span class="math notranslate nohighlight">\(G[t_{1},t_{1}^{'}]\)</span>. To evaluate, count how many edges in <span class="math notranslate nohighlight">\(L\)</span> are real new edge that appear during the test period.</p></li>
 </ul>
-<p>To do link prediction, it takes the following steps:</p>
+<p>Link prediction via proximity takes the following steps:</p>
 <ol class="simple">
 <li><p>For each pair of nodes <span class="math notranslate nohighlight">\((x,y)\)</span> compute score <span class="math notranslate nohighlight">\(c(x,y)\)</span> For example, <span class="math notranslate nohighlight">\(c(x,y)\)</span> could be the # of common neighbors of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span></p></li>
 <li><p>Sort pairs <span class="math notranslate nohighlight">\((x,y)\)</span> by the decreasing score
@@ -465,25 +648,79 @@ paths between other nodes. Mathematically, It is defined as follows:</p>
 <li><p>Predict top <span class="math notranslate nohighlight">\(n\)</span> pairs as new links</p></li>
 <li><p>See which of these links actually appear in <span class="math notranslate nohighlight">\(G[t_{1},t_{1}^{'}]\)</span></p></li>
 </ol>
-<p>The question now become what is the formulation of <span class="math notranslate nohighlight">\(c\)</span></p>
+<p>The question now become what is the formulation of <span class="math notranslate nohighlight">\(c\)</span>. In other words, how do we compute a score <span class="math notranslate nohighlight">\(c(x,y)\)</span> for a given pair of nodes <span class="math notranslate nohighlight">\((x,y)\)</span>? <span class="math notranslate nohighlight">\(c(x,y)\)</span> is enssentially the link-level feature.</p>
+<section id="distance-based-features">
+<h3>Distance-based Features<a class="headerlink" href="#distance-based-features" title="Permalink to this headline">#</a></h3>
+<p>One way is to use shortest-path distance between 2 nodes. However, this does not capture the degree of neighborhood overlap.</p>
+</section>
+<section id="local-neighborhood-overlap">
+<h3>Local Neighborhood Overlap<a class="headerlink" href="#local-neighborhood-overlap" title="Permalink to this headline">#</a></h3>
+<p>The idea here is to capture the number of neighboring nodes shared between two nodes <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>.</p>
 <ul class="simple">
-<li><p>Distance based: shortest-path distance between 2 nodes</p></li>
-<li><p>Local Neighborhood overlap: number of neighboring nodes shared between two nodes <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>.</p>
-<ul>
-<li><p>Common Neighters</p></li>
-<li><p>Jaccard’s Coefficient</p></li>
-<li><p>Adamic-Adar Index</p></li>
-</ul>
-</li>
-<li><p>Global Neighborhood overlap</p>
-<ul>
-<li><p>Katz index: count the number of walks of all lengths between a given pair of nodes.</p></li>
-</ul>
-</li>
+<li><p><strong>Common Neighbors</strong>
+$<span class="math notranslate nohighlight">\(N(v_1)\cap N(v_2)\)</span>$</p></li>
+<li><p><strong>Jaccard’s Coefficient</strong>
+$<span class="math notranslate nohighlight">\(\frac{N(v_1)\cap N(v_2)}{N(v_1)\cup N(v_2)}\)</span>$</p></li>
+<li><p><strong>Adamic-Adar Index</strong>
+$<span class="math notranslate nohighlight">\(\sum_{u\in N(v_1)\cap N(v_2))}\frac{1}{log(k_u)}\)</span>$</p></li>
 </ul>
 </section>
-<section id="graph">
-<h2>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">#</a></h2>
+<section id="global-neighborhood-overlap">
+<h3>Global Neighborhood overlap<a class="headerlink" href="#global-neighborhood-overlap" title="Permalink to this headline">#</a></h3>
+<p>The local neighborhood feature is always zero if the two nodes do not have any neighbors in common. However, the two nodes may still potentially be connected in the future.</p>
+<p>Global neighborhood overlap metrics resolve the limitation by considering the entire graph.</p>
+<p><strong>Katz index</strong> counts the number of walks of all lengths between a given pair of nodes <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>. Mathematically it can be defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{l=1}^{\infty}\beta^l \mathbf{\textit{P}}_{v_1v_2}^{(l)}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\beta^l \in (0,1)\)</span> is a discounting factor. <span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(l)}\)</span> is the number of walks of lengh <span class="math notranslate nohighlight">\(l\)</span> between <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>.</p>
+<p>To compute <span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(l)}\)</span>, we need to make use of the adjacency matrix of the graph <span class="math notranslate nohighlight">\(\mathbf{\textit{A}}\)</span>.</p>
+<ul class="simple">
+<li><p>When <span class="math notranslate nohighlight">\(l=1\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(1)}\)</span> specifies the number of walks of length 1 (direct neighborhood) between <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>. <span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(1)} = \mathbf{\textit{A}}_{v_1v_2}\)</span></p></li>
+<li><p>When <span class="math notranslate nohighlight">\(l=2\)</span>, <span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(2)}\)</span>specifies the number of walks of length 2 (neighbor of neighbor) between <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span>. It can be derived by summing up the number of works across <span class="math notranslate nohighlight">\(v_1\)</span>’s neighbors as follows:
+$<span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(2)} = \sum_i A_{v_1i}*\mathbf{\textit{P}}_{v_1v_2}^{(1)} = \mathbf{\textit{A}}_{v_1v_2}^2\)</span>$</p></li>
+</ul>
+<p>As such, <span class="math notranslate nohighlight">\(\mathbf{\textit{A}}_{v_1v_2}^l \)</span> specifies the number of walks of length <span class="math notranslate nohighlight">\(l\)</span> <strong>Katz index</strong> can be write as</p>
+<div class="math notranslate nohighlight">
+\[\sum_{l=1}^{\infty}\beta^l \mathbf{\textit{A}}_{v_1v_2}^l\]</div>
+<p>With this, it can be computed in closed-form</p>
+<div class="math notranslate nohighlight">
+\[S = \sum_{l=1}^{\infty}\beta^l \mathbf{\textit{A}}^l = (I-\beta\mathbf{\textit{A}})^{-1} -I\]</div>
+</section>
+</section>
+<section id="graph-level-features-and-graph-kernels">
+<h2>Graph-Level Features and Graph Kernels<a class="headerlink" href="#graph-level-features-and-graph-kernels" title="Permalink to this headline">#</a></h2>
+<p>The graph-level features are designed to characterize the structure of the entire graph.  Kernel methods are widely used for traditional ML for graph level prediction.</p>
+<p>In the case of Natural Language Processing, <strong>Bag-of-Words(BoW)</strong> uses word counts as features for documents without consider the ordering of the words.  BOW for a graph then would be to treat nodes as words. However, because it only focus on the node itself by ignoring the links of hte graph, it may lead to same representation for different graph.</p>
+<p>To address that, we can use <strong>bag of node degrees</strong>. Node degree combines the information of links and nodes and thus the structure of the graph. As such, it will produce different features for different graphs.</p>
+<p>Both <strong>Graphlet Kernel</strong> and <strong>Weisfeiler-Lehman (WL) Kernel</strong> use Bag-of-* representation of graph, where * is more sophisticated than node degrees.</p>
+<section id="graphlet-kernel">
+<h3>Graphlet Kernel<a class="headerlink" href="#graphlet-kernel" title="Permalink to this headline">#</a></h3>
+<p>Graph-level graphlet features count the number of different graphlets in a graph.</p>
+<p>It is worth noting that nodes in graphlets here do not need to be connected. In other words, isolated nodes are allowed. And unlike the node-level graphlet, graph-level graphlet are not rooted.</p>
+<p>Given graph <span class="math notranslate nohighlight">\(G\)</span>, and a graphlet list <span class="math notranslate nohighlight">\(\mathcal{G}_k=(g_1,g_2,...,g_{n_k})\)</span>, define the graphlet count
+vector <span class="math notranslate nohighlight">\(\mathcal{f}_G \in \mathbb{R}^{n_k}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[(\mathcal{f}_G)_i = \#(g_i \subseteq G)$$ for $$ i = 1,2,..,n_k\]</div>
+<p>Given two graphs, <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(G'\)</span>, graphlet kernel is computed as</p>
+<div class="math notranslate nohighlight">
+\[K(G,G')={\mathcal{f}_G}^T\mathcal{f}_{G'} \]</div>
+<p>When <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(G'\)</span> have different sizes, it can will greatly skew the value. To address this, we can normalize each feature vector:</p>
+<div class="math notranslate nohighlight">
+\[K(G,G')={\mathcal{h}_G}^T\mathcal{h}_{G'} \]</div>
+<p>Where $<span class="math notranslate nohighlight">\(\mathcal{h}_G = \frac{\mathcal{f}_G}{\sum{\mathcal{f}_G}} \)</span>$</p>
+<p>The limitation is that counting graphlets is expensive.</p>
+<ul class="simple">
+<li><p>Counting size-<span class="math notranslate nohighlight">\(k\)</span> graphlets for a graph with size <span class="math notranslate nohighlight">\(n\)</span> by enumeration takes <span class="math notranslate nohighlight">\(n^k\)</span>.</p></li>
+<li><p>This is unavoidable in the worst-case since subgraph isomorphism test (judging whether a graph is a subgraph of another graph) is NP-hard.</p></li>
+<li><p>If a graph’s node degree is bounded by <span class="math notranslate nohighlight">\(n\)</span> , an <span class="math notranslate nohighlight">\(O(nd^{k-1})\)</span>  algorithm exists to count all the graphlets of size <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+</section>
+<section id="weisfeiler-lehman-wl-kernel">
+<h3>Weisfeiler-Lehman (WL) Kernel<a class="headerlink" href="#weisfeiler-lehman-wl-kernel" title="Permalink to this headline">#</a></h3>
+<p><em><strong>Weisfeiler-Lehman (WL) Kernel</strong></em> use neighborhood structure to iteratively enrich node vocabulary.</p>
+<p>It use generalized version of Bag of node degrees and is achieved with the color refinement algorithm.</p>
+<p>After color refinement, WL kernel counts number of nodes with a given color. The WL kernel value is computed by the inner product of the color count vectors.</p>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
@@ -491,6 +728,8 @@ paths between other nodes. Mathematically, It is defined as follows:</p>
 <p>[2]<a class="reference external" href="https://www.bilibili.com/video/BV1HK411175s/?spm_id_from=333.788&amp;vd_source=fccde7883fbf93ac15b03dee298f9f18">传统图机器学习的特征工程-节点【斯坦福CS224W】</a></p>
 <p>[3]<a class="reference external" href="https://www.bilibili.com/video/BV1r3411m7sD/?spm_id_from=333.788">传统图机器学习的特征工程-连接【斯坦福CS224W】</a></p>
 <p>[4]<a class="reference external" href="https://www.bilibili.com/video/BV1r3411m7sD/?spm_id_from=333.788">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></p>
+<p>[5] Shervashidze, Nino, et al. “Efficient graphlet kernels for large graph comparison.” Artificial Intelligence and Statistics. 2009.</p>
+<p>[6] Shervashidze, Nino, et al. “Weisfeiler-lehman graph kernels.” Journal of Machine Learning Research 12.9 (2011).</p>
 </section>
 </section>
 
