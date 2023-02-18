@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Task 3: Network Analysis with NetworkX" href="03_networkx.html" />
     <link rel="prev" title="Task 1: Introduction" href="01_introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -145,6 +146,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Task 2: Traditional Feature-based Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_networkx.html">
+   Task 3: Network Analysis with NetworkX
   </a>
  </li>
 </ul>
@@ -617,7 +623,7 @@ protein protein interaction network.</p>
 <p>Clustering Coefficient measures how connected <span class="math notranslate nohighlight">\(v\)</span>’s neighboring nodes are. Mathematically, It is defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[e_v = \frac{n}{k_v \choose 2}\]</div>
-<p>Where <span class="math notranslate nohighlight">\(n\)</span> is the number of edges among neighboring nodes.<span class="math notranslate nohighlight">\(k_v \choose 2\)</span> means choose 2 nodes among <span class="math notranslate nohighlight">\(k_v\)</span> neighboring nodes for node for node <span class="math notranslate nohighlight">\(v\)</span>, i.e. it is the number of node pairs among the neighboring nodes for node for node <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>Where <span class="math notranslate nohighlight">\(n\)</span> is the number of edges among neighboring nodes.<span class="math notranslate nohighlight">\(k_v \choose 2\)</span> means choose 2 nodes among <span class="math notranslate nohighlight">\(k_v\)</span> neighboring nodes for node <span class="math notranslate nohighlight">\(v\)</span>, i.e. it is the number of node pairs among the neighboring nodes for node for node <span class="math notranslate nohighlight">\(v\)</span>.</p>
 </section>
 <section id="graphlet-degree-vector">
 <h3>Graphlet Degree Vector<a class="headerlink" href="#graphlet-degree-vector" title="Permalink to this headline">#</a></h3>
@@ -708,7 +714,10 @@ $<span class="math notranslate nohighlight">\(\mathbf{\textit{P}}_{v_1v_2}^{(2)}
 <p>Given graph <span class="math notranslate nohighlight">\(G\)</span>, and a graphlet list <span class="math notranslate nohighlight">\(\mathcal{G}_k=(g_1,g_2,...,g_{n_k})\)</span>, define the graphlet count
 vector <span class="math notranslate nohighlight">\(\mathcal{f}_G \in \mathbb{R}^{n_k}\)</span> as</p>
 <div class="math notranslate nohighlight">
-\[(\mathcal{f}_G)_i = \#(g_i \subseteq G)$$ for $$ i = 1,2,..,n_k\]</div>
+\[(\mathcal{f}_G)_i = \#(g_i \subseteq G)\]</div>
+<p>for</p>
+<div class="math notranslate nohighlight">
+\[ i = 1,2,..,n_k\]</div>
 <p>Given two graphs, <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(G'\)</span>, graphlet kernel is computed as</p>
 <div class="math notranslate nohighlight">
 \[K(G,G')={\mathcal{f}_G}^T\mathcal{f}_{G'} \]</div>
@@ -769,7 +778,7 @@ vector <span class="math notranslate nohighlight">\(\mathcal{f}_G \in \mathbb{R}
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./202302_machine_learning_with_graphs"
         },
         predefinedOutput: true
@@ -790,6 +799,13 @@ vector <span class="math notranslate nohighlight">\(\mathcal{f}_G \in \mathbb{R}
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Task 1: Introduction</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="03_networkx.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Task 3: Network Analysis with NetworkX</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

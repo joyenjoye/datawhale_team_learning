@@ -587,7 +587,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -q -r requirements.txt
 </pre></div>
 </div>
 </div>
@@ -597,7 +597,7 @@ title="Print to PDF"
 <h3>Setup font for Chinese<a class="headerlink" href="#setup-font-for-chinese" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl<span class="w"> </span>https://zihao-openmmlab.obs.cn-east-3.myhuaweicloud.com/20220716-mmclassification/dataset/SimHei.ttf<span class="w"> </span>-o<span class="w"> </span>SimHei.ttf
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl https://zihao-openmmlab.obs.cn-east-3.myhuaweicloud.com/20220716-mmclassification/dataset/SimHei.ttf -o SimHei.ttf
 </pre></div>
 </div>
 </div>
@@ -611,7 +611,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>which<span class="w"> </span>python
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>which python
 </pre></div>
 </div>
 </div>
@@ -623,7 +623,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mv<span class="w"> </span>SimHei.ttf<span class="w"> </span>/usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/SimHei.ttf
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mv SimHei.ttf /usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/SimHei.ttf
 </pre></div>
 </div>
 </div>
@@ -643,7 +643,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>rm<span class="w"> </span>-rf<span class="w"> </span>/Users/joye/.matplotlib
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>rm -rf /Users/joye/.matplotlib
 </pre></div>
 </div>
 </div>
@@ -660,7 +660,7 @@ title="Print to PDF"
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes">Source</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>open<span class="w"> </span>/usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/matplotlibrc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>open /usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/matplotlibrc
 </pre></div>
 </div>
 </div>
@@ -807,9 +807,9 @@ data/黄瓜/41.jpg 非三通道，删除
 <h3>Remove system files<a class="headerlink" href="#remove-system-files" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
 </pre></div>
 </div>
 </div>
@@ -983,7 +983,7 @@ data/黄瓜/41.jpg 非三通道，删除
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/202301_image_classification/01_data_preparation_32_0.png" src="_build/jupyter_execute/202301_image_classification/01_data_preparation_32_0.png" />
+<img alt="../_images/01_data_preparation_32_0.png" src="../_images/01_data_preparation_32_0.png" />
 </div>
 </div>
 </section>
@@ -1033,7 +1033,7 @@ data/黄瓜/41.jpg 非三通道，删除
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/202301_image_classification/01_data_preparation_34_0.png" src="_build/jupyter_execute/202301_image_classification/01_data_preparation_34_0.png" />
+<img alt="../_images/01_data_preparation_34_0.png" src="../_images/01_data_preparation_34_0.png" />
 </div>
 </div>
 </section>
@@ -1210,7 +1210,7 @@ data/黄瓜/41.jpg 非三通道，删除
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_build/jupyter_execute/202301_image_classification/01_data_preparation_46_0.png" src="_build/jupyter_execute/202301_image_classification/01_data_preparation_46_0.png" />
+<img alt="../_images/01_data_preparation_46_0.png" src="../_images/01_data_preparation_46_0.png" />
 </div>
 </div>
 </section>
@@ -1218,9 +1218,9 @@ data/黄瓜/41.jpg 非三通道，删除
 <h2>House Cleaning<a class="headerlink" href="#house-cleaning" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
 </pre></div>
 </div>
 </div>
@@ -1240,7 +1240,7 @@ data/黄瓜/41.jpg 非三通道，删除
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./202301_image_classification"
         },
         predefinedOutput: true
