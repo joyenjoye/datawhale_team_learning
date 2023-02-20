@@ -1,0 +1,800 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Task 4: Node Embeddings &#8212; Datawhale Team Learning Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Task 3: Network Analysis with NetworkX" href="03_networkx.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Datawhale Team Learning Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome 🤗
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Classification
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202301_image_classification/01_data_preparation.html">
+   Task 1: Image Dataset Preparation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202301_image_classification/02_inference_with_pretrained_models.html">
+   Task 2: Inference with Pre-trained models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Machine Learning with Graphs
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_introduction.html">
+   Task 1: Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_traditional_feature_based_methods.html">
+   Task 2: Traditional Feature-based Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_networkx.html">
+   Task 3: Network Analysis with NetworkX
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Task 4: Node Embeddings
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202302_machine_learning_with_graphs/04_node_embedding.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/joyenjoye/datawhale_team_learning"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202302_machine_learning_with_graphs/04_node_embedding.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/202302_machine_learning_with_graphs/04_node_embedding.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shallow-encoder">
+   Shallow Encoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#node-similarity">
+   Node Similarity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-linkage">
+     Node Linkage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-walk">
+     Random Walk
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-walk-strategies">
+       Random walk Strategies
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization">
+   Optimization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-sampling">
+     Negative Sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-gradient-descent">
+     Stochastic Gradient Descent
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations">
+   Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-use-embedding">
+   How to Use Embedding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Task 4: Node Embeddings</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shallow-encoder">
+   Shallow Encoder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#node-similarity">
+   Node Similarity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#node-linkage">
+     Node Linkage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-walk">
+     Random Walk
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#random-walk-strategies">
+       Random walk Strategies
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization">
+   Optimization
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-sampling">
+     Negative Sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-gradient-descent">
+     Stochastic Gradient Descent
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitations">
+   Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-use-embedding">
+   How to Use Embedding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="task-4-node-embeddings">
+<h1>Task 4: Node Embeddings<a class="headerlink" href="#task-4-node-embeddings" title="Permalink to this headline">#</a></h1>
+<p>In Task 2, we learnt traditional feature based methods - for a given input graph, node, link and graph-level features are extracted so that they can be feed into a model (SVM, neural network) that maps features to target labels.</p>
+<p>Graph representation learning alleviates the need to do feature engineering manully, but instead automatically learn the features.</p>
+<p>The goal for graph representation learning here is to lern  task-idependent features for downstream models efficiently.</p>
+<p>The task of learning node embeddings is to map nodes to an embedding space so that similarity of embeddings between nodes indicates their similarity in the network. In other words, the embedding should be able to capture the nework information.</p>
+<p>Assume we have a graph <span class="math notranslate nohighlight">\(G\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V\)</span> is the vertex set.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is the adjacency maxtrix(assume binary).</p></li>
+</ul>
+<p>The goal is to encode nodes so that similarity in the embedding space approximates similarity in the graph.</p>
+<p>There are two key components in the above process:</p>
+<ul>
+<li><p><strong>Encoder</strong> maps from nodes to embeddings.</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{ENC}(v) = z_v\]</div>
+</li>
+<li><p><strong>Decoder</strong> maps from embedding to simiarliy score for node <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{DEC} = z_v^T z_u\]</div>
+<p>here is the dot product between embeddings for node <span class="math notranslate nohighlight">\(v\)</span> and node <span class="math notranslate nohighlight">\(u\)</span>.</p>
+</li>
+</ul>
+<p>So the problem here is to optimize the parameters of the encoder so that</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{similarity}(u,v) \approx z_v^T z_u\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\mathrm{similarity}(u,v)\)</span> refers to the similarity of the node is the original netowrk.</p>
+<p>To do the above optimation, we need to define both encoder and node similarity.</p>
+<section id="shallow-encoder">
+<h2>Shallow Encoder<a class="headerlink" href="#shallow-encoder" title="Permalink to this headline">#</a></h2>
+<p>Simplests encoding approach is to treat encoder as just an embedding look up table.</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{ENC}(v) = z_v = Z*v\]</div>
+<p>Where <span class="math notranslate nohighlight">\(Z \in \mathbb{R}^{d*|v|}\)</span> is a matrix where each column is node embeding, and <span class="math notranslate nohighlight">\(v\in\mathbb{I}^{|v|}\)</span> is indicator vector, all zeros except a one in column indicating node <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p>In such cases, each node is assigned a unique emebedding vector, and we can directly optimize the embedding of each node <span class="math notranslate nohighlight">\(Z\)</span>.</p>
+</section>
+<section id="node-similarity">
+<h2>Node Similarity<a class="headerlink" href="#node-similarity" title="Permalink to this headline">#</a></h2>
+<p>Intuitively, if the two nodes are linked, or share neighbors, or have similar structural roles, they are more likely to have similar emebeddings.</p>
+<section id="node-linkage">
+<h3>Node Linkage<a class="headerlink" href="#node-linkage" title="Permalink to this headline">#</a></h3>
+<p>Simplest node similarity: node <span class="math notranslate nohighlight">\(v\)</span> and node <span class="math notranslate nohighlight">\(u\)</span> are similar if they are connected by an edge. This means:</p>
+<div class="math notranslate nohighlight">
+\[z_v^T z_u = A_{u,v}\]</div>
+<p>which is the <span class="math notranslate nohighlight">\((u,v)\)</span> entry of the graph adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[Z^TZ = A\]</div>
+<p>Exact factorization <span class="math notranslate nohighlight">\(A=Z^TZ\)</span> is generally not possible. However, we can learn <span class="math notranslate nohighlight">\(Z\)</span> approximately.</p>
+<p>Specifically, we optimize <span class="math notranslate nohighlight">\(Z\)</span> such that it minimizes the L2 norm (Frobenius norm) of <span class="math notranslate nohighlight">\(A-Z^TZ\)</span>. The objective function is thus as follows:</p>
+<div class="math notranslate nohighlight">
+\[\min_Z\lVert A-Z^TZ\rVert_2\]</div>
+</section>
+<section id="random-walk">
+<h3>Random Walk<a class="headerlink" href="#random-walk" title="Permalink to this headline">#</a></h3>
+<p>One way is to define node similarity using random walks.</p>
+<p>Given a graph and a starting point, we select a neighbor of it at random, and move to this neighbor, then we select a neighbor of this point at radom and move to it and repeat… The random sequence of points visited this way is a <strong>random walk</strong> on the graph.</p>
+<p>The probability that node <span class="math notranslate nohighlight">\(v\)</span> and node <span class="math notranslate nohighlight">\(u\)</span> co-occur on the random walk over graph can be used to measure the node simiarlity between node <span class="math notranslate nohighlight">\(v\)</span> and node <span class="math notranslate nohighlight">\(u\)</span>. The intuition is that If random walk starting from node <span class="math notranslate nohighlight">\(u\)</span> visits <span class="math notranslate nohighlight">\(v\)</span> with high probability, <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are similar (high-order multi-hop information).As such, we can write the follows:</p>
+<div class="math notranslate nohighlight">
+\[P_R(v|u) \approx z_v^T z_u\]</div>
+<p>The reasons that why should we use random walks for node similarity:</p>
+<ul class="simple">
+<li><p><strong>Expressivity</strong>:  Flexible stochastic definition of node similarity that incorporates both local and higher-order neighborhood information.</p></li>
+<li><p><strong>Efficiency</strong>: Do not need to consider all node pairs when training; only need to consider pairs that co-occur on random walks</p></li>
+</ul>
+<section id="random-walk-strategies">
+<h4>Random walk Strategies<a class="headerlink" href="#random-walk-strategies" title="Permalink to this headline">#</a></h4>
+<p>There are different strategies that we can run random walk:</p>
+<ul class="simple">
+<li><p>Fixed-length, unbiased random walk</p>
+<ul>
+<li><p>DeepWalk: <a class="reference external" href="https://arxiv.org/abs/1403.6652">(Perozzi et al., 2013)</a></p></li>
+<li><p>The issue is that such notion of similarity is too constrained.</p></li>
+</ul>
+</li>
+<li><p>Biased random walks:</p>
+<ul>
+<li><p>Node2Vec: <a class="reference external" href="https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf">(Grover and Leskovec, 2016)</a>.</p></li>
+<li><p>Based on node attributes (Dong et al., 2017).</p></li>
+<li><p>Based on learned weights (Abu-El-Haija et al., 2017)</p></li>
+</ul>
+</li>
+<li><p>Alternative optimization schemes:</p>
+<ul>
+<li><p>Directly optimize based on 1-hop and 2-hop random walk probabilities (as in LINE from Tang et al. 2015).</p></li>
+</ul>
+</li>
+<li><p>Network preprocessing techniques:</p>
+<ul>
+<li><p>Run random walks on modified versions of the original network (e.g., Ribeiro et al. 2017’s struct2vec, Chen et al.2016’s HARP).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="optimization">
+<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h2>
+<p>Now, we can formally definie the optimization. For given <span class="math notranslate nohighlight">\(G = (V,E)\)</span>, the goal is to learn a mapping <span class="math notranslate nohighlight">\(f:u \rightarrow \mathbb{R}^d: f(u) = \mathbf{z}_u\)</span> to maximize the Log-likelihood objective:</p>
+<div class="math notranslate nohighlight">
+\[\max_f\sum_{u \in V}\log P(N_R(u)|\mathbf{z}_u)\tag{1}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(N_R(u)\)</span> is the neighborhood of node <span class="math notranslate nohighlight">\(u\)</span> by strategy <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>The optimization takes the following steps:</p>
+<ul class="simple">
+<li><p>Run short fixed-length random walks starting from each node <span class="math notranslate nohighlight">\(u\)</span> in the graph using some random walk strategy <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
+<li><p>For each node <span class="math notranslate nohighlight">\(R\)</span> collect <span class="math notranslate nohighlight">\(N_R(u)\)</span>, the multiset of nodes visited on random walks starting from <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
+<li><p>Optimize embeddings <span class="math notranslate nohighlight">\(Z_u\)</span> so that for a given node <span class="math notranslate nohighlight">\(u\)</span>, predict its neighbors <span class="math notranslate nohighlight">\(N_R(u)\)</span>.</p></li>
+</ul>
+<p>The maximization of the above is equivalent to minimize the following:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \sum_{u \in V}\sum_{v \in N_R(u)}-\log P(v|\mathbf{z}_u)\tag{2}\label{eq:loss_function}\]</div>
+<p>Here, we are optimizing emebding <span class="math notranslate nohighlight">\(Z_u\)</span> to maximize the likelihood of random walk co-occurrences.</p>
+<p>Where <span class="math notranslate nohighlight">\(P(v|\mathbf{z}_u)\)</span> can be parmeterize using softmax:</p>
+<div class="math notranslate nohighlight">
+\[
+P(v|\mathbf{z}_u) = \frac{\exp(z_u^T z_v)}{\sum_{n \in V}\exp(z_v^T z_n)} \tag{3}\label{eq:likelihood}
+\]</div>
+<p>Plug <span class="math notranslate nohighlight">\(\eqref{eq:likelihood}\)</span> into <span class="math notranslate nohighlight">\(\eqref{eq:loss_function}\)</span>, we get the following loss function:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \sum_{u \in V}\sum_{v \in N_R(u)}-\log \frac{\exp(z_u^T z_v)}{\sum_{n \in V}\exp(z_v^T z_n)}\tag{4}\label{eq:loss_function_final}\]</div>
+<p>But doing this naively is too expensive becaue nested sum over nodes gives complexity of <span class="math notranslate nohighlight">\(\mathrm{O}(|V|^2)\)</span></p>
+<section id="negative-sampling">
+<h3>Negative Sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this headline">#</a></h3>
+<p>To address this, we can consider to approximate the the normalization term as follows:</p>
+<div class="math notranslate nohighlight">
+\[\log \frac{\exp(z_u^T z_v)}{\sum_{n \in V}\exp(z_v^T z_n)} \approx log\big(\sigma(z_u^T z_v)\big) - \sum_{i=1}^{k}log\big(\sigma(z_u^T z_{n_i})\big), n_i \sim P_V\]</div>
+<p>Instead of normalizing w.r.t. all nodes, just normalize against <span class="math notranslate nohighlight">\(k\)</span> random “negative samples” <span class="math notranslate nohighlight">\(n_i\)</span></p>
+<p>The above approximation is called negative sampling it is a form of noise contrastive estimation(NCE) which approximate the maximimation of the log probability of softmax.</p>
+<p>The new formulation correspons to using the logistic regression to distinguish the target node <span class="math notranslate nohighlight">\(v\)</span> from nodes <span class="math notranslate nohighlight">\(n_i\)</span> sampled from the background distribution <span class="math notranslate nohighlight">\(P_v\)</span>. For more details on this, refer to <a class="reference external" href="https://arxiv.org/pdf/1402.3722.pdf">oldberg, Y. and Levy, O., 2014</a>.</p>
+<p>Considerations for negative sampling:</p>
+<ul class="simple">
+<li><p>Higher <span class="math notranslate nohighlight">\(k\)</span> gives more robust estimates</p></li>
+<li><p>Higher <span class="math notranslate nohighlight">\(k\)</span> corresponds to higher bias on negative events. In practice <span class="math notranslate nohighlight">\(k =5-20\)</span> .</p></li>
+<li><p>Can negative sample be any node or only the nodes not on the
+walk? People often use any nodes (for efficiency). However, the
+most “correct” way is to use nodes not on the walk.</p></li>
+</ul>
+</section>
+<section id="stochastic-gradient-descent">
+<h3>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this headline">#</a></h3>
+<p>Now that we have the loss function, and we need to optimize (minimize) it.</p>
+<p><strong>Gradient Descent</strong> is a simple way to minimize <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> :</p>
+<ul>
+<li><p>Initialize <span class="math notranslate nohighlight">\(z_u\)</span> at some randomized value for all nodes <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
+<li><p>Iterate until convergence:</p>
+<ul>
+<li><p>For all <span class="math notranslate nohighlight">\(u\)</span>, compute the derivative</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial \mathcal{L}}{\partial z_u}\]</div>
+</li>
+<li><p>For all <span class="math notranslate nohighlight">\(u\)</span>, make a step in reverse direction of derivative:</p>
+<div class="math notranslate nohighlight">
+\[ z_u \leftarrow z_u - \eta \frac{\partial \mathcal{L}}{\partial z_u}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is lthe earning rate.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Stochastic Gradient Descent</strong> evaluates it for each individual training example instead of evaluating gradients over all examples.</p>
+<ul>
+<li><p>Initialize <span class="math notranslate nohighlight">\(z_u\)</span> at some randomized value for all nodes <span class="math notranslate nohighlight">\(u\)</span>.</p></li>
+<li><p>Iterate until convergence:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}^{(u)} = \sum_{v \in N_R(u)}-\log P(v|\mathbf{z}_u)\]</div>
+<ul>
+<li><p>Sample a node <span class="math notranslate nohighlight">\(u\)</span>, for all <span class="math notranslate nohighlight">\(v\)</span>, compute the derivative</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial \mathcal{L}^{(u)}}{\partial z_v}\]</div>
+</li>
+<li><p>For all <span class="math notranslate nohighlight">\(v\)</span>, update</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ z_v \leftarrow z_v - \eta \frac{\partial \mathcal{L}^{(u)}}{\partial z_v}\]</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
+<p>Limitations of node embeddings via matrix factorization and random walks</p>
+<ul class="simple">
+<li><p>Cannot obtain embeddings for nodes not in the training set</p></li>
+<li><p>Cannot capture structural similarity</p></li>
+<li><p>Cannot utilize node, edge and graph features</p></li>
+</ul>
+<p>To address these limitations, deep representation learning and graph neural networks can be used.</p>
+</section>
+<section id="how-to-use-embedding">
+<h2>How to Use Embedding<a class="headerlink" href="#how-to-use-embedding" title="Permalink to this headline">#</a></h2>
+<p>For <strong>node-level tasks</strong> such as clustering/community dectection, node classification, we can just directly use the node embedding <span class="math notranslate nohighlight">\(z_i\)</span> for a given node <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>For <strong>link-level tasks</strong> that predict edge<span class="math notranslate nohighlight">\((i,j)\)</span> base on  <span class="math notranslate nohighlight">\((z_i,z_j)\)</span>, we can concatenate, avg, product, or take a difference
+between the embeddings to get the link embedding.</p>
+<p>For <strong>graph-level tasks</strong> that classsify graphs into different classes, we can get graph embedding through the following 3 approaches. Examples of graph level tasks are classifying toxic vs. non-toxic molecules, and identifying anomalous graphs.</p>
+<ul>
+<li><p><strong>Approach 1</strong>: Embed notdes and aggregate node embeddings.</p>
+<ul class="simple">
+<li><p>Run a standard node embedding technique on the (sub)graph <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+<li><p>Then just sum (or average) the node embeddings in the (sub)graph <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+</ul>
+<p>It is simple but efficient and was used by <a class="reference external" href="https://arxiv.org/abs/1509.09292">Duvenaud et al., 2016</a> to classify molecules based on their graph structure.</p>
+</li>
+<li><p><strong>Approach 2</strong>: Introduce and embed virtual node.</p>
+<ul class="simple">
+<li><p>Create super-node that spans the (sub) graph and then embed that node.</p></li>
+<li><p>use the virtual node embedding as graph embedding.</p></li>
+</ul>
+<p>It was proposed by <a class="reference external" href="https://arxiv.org/abs/1511.05493">Li et al., 2016</a> as a general
+technique for subgraph embedding.</p>
+</li>
+<li><p><strong>Approach 3</strong>: hierarchically embeddings</p>
+<ul class="simple">
+<li><p>Hierarchically cluster nodes in graphs,</p></li>
+<li><p>Then sum(or average) the node embeddings according to these clusters.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<p>[1]<a class="reference external" href="https://www.youtube.com/watch?v=rMq21iY61SE&amp;list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn&amp;index=7">Node Embeddings Youtube. Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
+<p>[2]<a class="reference external" href="http://web.stanford.edu/class/cs224w/slides/03-nodeemb.pdf">Node Embeddings Slides. Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./202302_machine_learning_with_graphs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03_networkx.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Task 3: Network Analysis with NetworkX</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Joye<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
