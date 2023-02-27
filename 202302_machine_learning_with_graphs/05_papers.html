@@ -166,6 +166,16 @@ const thebe_selector_output = ".output, .cell_output"
    Task 6: Page Rank
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_label_propagation.html">
+   Task 7: Label Propagation for Node Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_GNN.html">
+   Task 8: Graph Neural Networks - GNN
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -378,18 +388,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#research-problem">
-     Research Problem
+    <a class="reference internal nav-link" href="#motivation">
+     Motivation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-existing-approaches">
-     The Existing Approaches
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-node2vec-approach">
-     The node2vec Approach:
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
     </a>
    </li>
   </ul>
@@ -419,18 +424,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#research-problem">
-     Research Problem
+    <a class="reference internal nav-link" href="#motivation">
+     Motivation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-existing-approaches">
-     The Existing Approaches
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-node2vec-approach">
-     The node2vec Approach:
+    <a class="reference internal nav-link" href="#algorithm">
+     Algorithm
     </a>
    </li>
   </ul>
@@ -449,12 +449,9 @@ title="Print to PDF"
 <h1>Task 5: Node2vec &amp; DeepWalk<a class="headerlink" href="#task-5-node2vec-deepwalk" title="Permalink to this headline">#</a></h1>
 <section id="node2vec">
 <h2>node2vec<a class="headerlink" href="#node2vec" title="Permalink to this headline">#</a></h2>
-<section id="research-problem">
-<h3>Research Problem<a class="headerlink" href="#research-problem" title="Permalink to this headline">#</a></h3>
-<p>Many important tasks in network analysis involve predictions over nodes, edges or entire network.The problem here is how to construct a feature vector representation for the nodes and edges</p>
-</section>
-<section id="the-existing-approaches">
-<h3>The Existing Approaches<a class="headerlink" href="#the-existing-approaches" title="Permalink to this headline">#</a></h3>
+<p>Many important tasks in network analysis involve predictions over nodes, edges or entire network. The problem here is how to construct a feature vector representation for the nodes and edges.</p>
+<section id="motivation">
+<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h3>
 <p>A typical solution involves hand-engineering domain-specific features based on expert knowledge. The issue with this it is timeconsuming and not generalize across different prediction tasks.</p>
 <p>An alternative solution is to learn feature representations by solving an optimization problem.</p>
 <ul>
@@ -462,14 +459,14 @@ title="Print to PDF"
 <li><p>The current techniques fail to satisfactorily define and optimize a reasonable objective</p>
 <ul>
 <li><p>An objective that transforms a representative data matrix of the network such that it maximizes the variance of the data representation.</p>
-<p>-&gt; <strong>Computationally expensive and poor performance.</strong></p>
+<p><strong>Computationally expensive and poor performance.</strong></p>
 </li>
-<li><p>An objective that seeks to preserve local neighborhoods of nodes. <strong>Recent attempts</strong> in this direction propose efficient algorithms but rely on a rigid notion of a network neighborhood.</p>
+<li><p>An objective that seeks to preserve local neighborhoods of nodes. Recent attempts in this direction propose efficient algorithms but rely on a rigid notion of a network neighborhood.</p>
 <ul class="simple">
 <li><p>In some case, network neighborhood is defined by communities they belong to</p></li>
 <li><p>in other cases,network neighborhood is based on structural roles in the network</p></li>
 </ul>
-<p>-&gt; <strong>Too restrictive to capture a variety of network neighborhood in real-world networks</strong></p>
+<p><strong>Too restrictive to capture a variety of network neighborhood in real-world networks</strong></p>
 </li>
 </ul>
 </li>
@@ -480,8 +477,8 @@ title="Print to PDF"
 <li><p>learn representations where nodes that share similar roles have similar embeddings.</p></li>
 </ul>
 </section>
-<section id="the-node2vec-approach">
-<h3>The node2vec Approach:<a class="headerlink" href="#the-node2vec-approach" title="Permalink to this headline">#</a></h3>
+<section id="algorithm">
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">#</a></h3>
 <p><strong>Efficacy of node2vec</strong></p>
 <ul class="simple">
 <li><p>Therocially, flexibility in exploring neighborhood allows learning richer representations</p></li>

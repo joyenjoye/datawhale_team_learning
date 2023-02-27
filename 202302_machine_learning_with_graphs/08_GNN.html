@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Task 5: Node2vec &amp; Deep Walk &#8212; Datawhale Team Learning Notes</title>
+    <title>Task 8: Graph Neural Networks - GNN &#8212; Datawhale Team Learning Notes</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,8 +50,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Task 7: Label Propagation for Node Classification" href="07_label_propagation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -133,7 +136,7 @@ const thebe_selector_output = ".output, .cell_output"
   Machine Learning with Graphs
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_introduction.html">
    Task 1: Introduction
@@ -152,6 +155,26 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="04_node_embedding.html">
    Task 4: Node Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_papers.html">
+   Task 5: Node2vec &amp; DeepWalk
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_page_rank.html">
+   Task 6: Page Rank
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_label_propagation.html">
+   Task 7: Label Propagation for Node Classification
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Task 8: Graph Neural Networks - GNN
   </a>
  </li>
 </ul>
@@ -213,7 +236,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202302_machine_learning_with_graphs/Untitled.ipynb"
+        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202302_machine_learning_with_graphs/08_GNN.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -273,7 +296,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202302_machine_learning_with_graphs/Untitled.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202302_machine_learning_with_graphs/08_GNN.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -301,7 +324,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/202302_machine_learning_with_graphs/Untitled.ipynb"
+        <a href="../_sources/202302_machine_learning_with_graphs/08_GNN.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -338,94 +361,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#node2vec">
-   node2vec
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#research-problem">
-     Research Problem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-existing-approaches">
-     The Existing Approaches
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-node2vec-approach">
-     The node2vec Approach:
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Task 5: Node2vec & Deep Walk</h1>
+                <h1>Task 8: Graph Neural Networks - GNN</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#node2vec">
-   node2vec
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#research-problem">
-     Research Problem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-existing-approaches">
-     The Existing Approaches
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-node2vec-approach">
-     The node2vec Approach:
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -433,50 +385,18 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="task-5-node2vec-deep-walk">
-<h1>Task 5: Node2vec &amp; Deep Walk<a class="headerlink" href="#task-5-node2vec-deep-walk" title="Permalink to this headline">#</a></h1>
-<section id="node2vec">
-<h2>node2vec<a class="headerlink" href="#node2vec" title="Permalink to this headline">#</a></h2>
-<section id="research-problem">
-<h3>Research Problem<a class="headerlink" href="#research-problem" title="Permalink to this headline">#</a></h3>
-<p>Many important tasks in network analysis involve predictions over nodes, edges or entire network.The problem here is how to construct a feature vector representation for the nodes and edges</p>
-</section>
-<section id="the-existing-approaches">
-<h3>The Existing Approaches<a class="headerlink" href="#the-existing-approaches" title="Permalink to this headline">#</a></h3>
-<p>A typical solution involves hand-engineering domain-specific features based on expert knowledge. The issue with this it is timeconsuming and not generalize across different prediction tasks.</p>
-<p>An alternative solution is to learn feature representations by solving an optimization problem.</p>
-<ul>
-<li><p>The objective function can be either task-dependent or task independent.</p></li>
-<li><p>The current techniques fail to satisfactorily define and optimize a reasonable objective</p>
-<ul>
-<li><p>An objective that transforms a representative data matrix of the network such that it maximizes the variance of the data representation.</p>
-<p>-&gt; <strong>Computationally expensive and poor performance.</strong></p>
-</li>
-<li><p>An objective that seeks to preserve local neighborhoods of nodes. <strong>Recent attempts</strong> in this direction propose efficient algorithms but rely on a rigid notion of a network neighborhood.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="task-8-graph-neural-networks-gnn">
+<h1>Task 8: Graph Neural Networks - GNN<a class="headerlink" href="#task-8-graph-neural-networks-gnn" title="Permalink to this headline">#</a></h1>
+<p>In Task 2, we learnt traditional feature based methods - for a given input graph, node, link and graph-level features are extracted so that they can be feed into a model (SVM, neural network) that maps features to target labels.</p>
+<p>In Task 4, we learnt graph representation learning which learns task-idependent features for downstream models efficiently. It uses a <em><strong>shallow</strong></em> <strong>Encoder</strong> to map nodes to emebdings and <strong>Decoder</strong> to map embeddings to similarity Score.</p>
+<p>The limitation of shallow emebedding methods are as follows:</p>
 <ul class="simple">
-<li><p>In some case, network neighborhood is defined by communities they belong to</p></li>
-<li><p>in other cases,network neighborhood is based on structural roles in the network</p></li>
+<li><p>The complexity of <span class="math notranslate nohighlight">\(O(|V|)\)</span> as there is no sharing of paramters between nodes, and every nodes has its own unique embedding</p></li>
+<li><p>Inherently transductive and cannot generte emebeddings that not seen during training.</p></li>
+<li><p>Node features are not incorporated.</p></li>
 </ul>
-<p>-&gt; <strong>Too restrictive to capture a variety of network neighborhood in real-world networks</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Thus, it is essential to allow for a flexible algorithm that can learn node representations obeying both principles:</p>
-<ul class="simple">
-<li><p>learn representations that embed nodes from the same network community closely together</p></li>
-<li><p>learn representations where nodes that share similar roles have similar embeddings.</p></li>
-</ul>
-</section>
-<section id="the-node2vec-approach">
-<h3>The node2vec Approach:<a class="headerlink" href="#the-node2vec-approach" title="Permalink to this headline">#</a></h3>
-<p><strong>Efficacy of node2vec</strong></p>
-<ul class="simple">
-<li><p>Therocially, flexibility in exploring neighborhood allows learning richer representations</p></li>
-<li><p>Experiments shows efficacy using node2vec over existing state-of-art techincals on multilabel clasficiation and link prediction in serval real-world network from diverse domains.</p></li>
-</ul>
-</section>
-</section>
+<p>In this task, we learn how to use deep learning methods (graph neural networks, GNNs) to get a deep encoder to map nodes to embeddings.</p>
+<p>Essentially, the deep encoder is a multiple layers of non-linear transformations based on graph structure.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -488,16 +408,16 @@ title="Print to PDF"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: ""
         },
         kernelOptions: {
-            name: "python3",
+            name: "",
             path: "./202302_machine_learning_with_graphs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = ''</script>
 
               </div>
               
@@ -506,6 +426,13 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="07_label_propagation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Task 7: Label Propagation for Node Classification</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>
