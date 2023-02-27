@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Task 6: Page Rank &#8212; Datawhale Team Learning Notes</title>
+    <title>Task 7: Label Propagation for Node Classification &#8212; Datawhale Team Learning Notes</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,10 +50,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Relational Clasification" href="07_label_propagation.html" />
-    <link rel="prev" title="Task 5: Node2vec &amp; DeepWalk" href="05_papers.html" />
+    <link rel="prev" title="Task 6: Page Rank" href="06_page_rank.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -161,14 +162,14 @@ const thebe_selector_output = ".output, .cell_output"
    Task 5: Node2vec &amp; DeepWalk
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_page_rank.html">
    Task 6: Page Rank
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07_label_propagation.html">
-   Relational Clasification
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Task 7: Label Propagation for Node Classification
   </a>
  </li>
 </ul>
@@ -230,7 +231,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202302_machine_learning_with_graphs/06_page_rank.ipynb"
+        <a href="https://mybinder.org/v2/gh/joyenjoye/datawhale_team_learning/master?urlpath=tree/docs/202302_machine_learning_with_graphs/07_label_propagation.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -290,7 +291,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202302_machine_learning_with_graphs/06_page_rank.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/joyenjoye/datawhale_team_learning/issues/new?title=Issue%20on%20page%20%2F202302_machine_learning_with_graphs/07_label_propagation.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -318,7 +319,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/202302_machine_learning_with_graphs/06_page_rank.ipynb"
+        <a href="../_sources/202302_machine_learning_with_graphs/07_label_propagation.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -378,9 +379,40 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation">
-   Motivation
+  <a class="reference internal nav-link" href="#relational-clasification">
+   Relational Clasification
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-relational-classifier">
+     Probabilistic Relational Classifier
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterative-clasification">
+   Iterative Clasification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interative-classifier">
+     Interative Classifier
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collective-clasification">
+   Collective Clasification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#correct-smooth">
+     Correct &amp; Smooth
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
@@ -396,7 +428,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Task 6: Page Rank</h1>
+                <h1>Task 7: Label Propagation for Node Classification</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -407,9 +439,40 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation">
-   Motivation
+  <a class="reference internal nav-link" href="#relational-clasification">
+   Relational Clasification
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probabilistic-relational-classifier">
+     Probabilistic Relational Classifier
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iterative-clasification">
+   Iterative Clasification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interative-classifier">
+     Interative Classifier
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collective-clasification">
+   Collective Clasification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#correct-smooth">
+     Correct &amp; Smooth
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
@@ -426,20 +489,121 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="task-6-page-rank">
-<h1>Task 6: Page Rank<a class="headerlink" href="#task-6-page-rank" title="Permalink to this headline">#</a></h1>
-<section id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h2>
-<p>Two key challenges with regards to search on the World Wide Web:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="task-7-label-propagation-for-node-classification">
+<h1>Task 7: Label Propagation for Node Classification<a class="headerlink" href="#task-7-label-propagation-for-node-classification" title="Permalink to this headline">#</a></h1>
+<p>Given a network with labels on some nodes, how do we assign labels to all
+other nodes in the network?</p>
+<p>We can potentailly leverage that correlations exist in networks - nearby nodes are similar. Correlations exist becasue :</p>
 <ul class="simple">
-<li><p>The information is large and heterogeneous</p></li>
-<li><p>Search engines must also be able to handle inexperienced users and pages engineered to manipulate search engine ranking functions.</p></li>
+<li><p>Homophily: The tendency of individuals to associate and bond with similar others</p></li>
+<li><p>Influence: Social connections can influence the individual characteristics of a person.</p></li>
 </ul>
+<p>To leverage this correlation observed in networks to predict node labels,we can classify the label of a node <span class="math notranslate nohighlight">\(v\)</span> in network using</p>
+<ul class="simple">
+<li><p>Features of <span class="math notranslate nohighlight">\(v\)</span></p></li>
+<li><p>Labels of the nodes in <span class="math notranslate nohighlight">\(v\)</span>’s neighborhood</p></li>
+<li><p>Features of the nodes in <span class="math notranslate nohighlight">\(v\)</span>’s neighborhood</p></li>
+</ul>
+<section id="relational-clasification">
+<h2>Relational Clasification<a class="headerlink" href="#relational-clasification" title="Permalink to this headline">#</a></h2>
+<section id="probabilistic-relational-classifier">
+<h3>Probabilistic Relational Classifier<a class="headerlink" href="#probabilistic-relational-classifier" title="Permalink to this headline">#</a></h3>
+<p>Class probability <span class="math notranslate nohighlight">\(Y_v\)</span> of node <span class="math notranslate nohighlight">\(v\)</span> is a weighted average of class probabilities of its neighbors.</p>
+<ol>
+<li><p>For labeled nodes <span class="math notranslate nohighlight">\(v\)</span>, initialize label <span class="math notranslate nohighlight">\(Y_v\)</span> with ground-truth label <span class="math notranslate nohighlight">\(Y_v^*\)</span>. For unlabeled nodes, initialize <span class="math notranslate nohighlight">\(Y_v = 0.5\)</span>.</p></li>
+<li><p>For each node <span class="math notranslate nohighlight">\(v\)</span> and label <span class="math notranslate nohighlight">\(c\)</span></p>
+<div class="math notranslate nohighlight">
+\[P(Y_v=c)= \frac{1} {\sum_{(v,u) \in E} A_{v,u}}\sum_{(v,u) \in E} A_{v,u}P(Y_u=c)\]</div>
+<p>If edges have strength/weight information, <span class="math notranslate nohighlight">\(A_{v,u}\)</span> can be the edge weight between <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(u\)</span>. <span class="math notranslate nohighlight">\(P(Y_u=c)\)</span> is the probability of node <span class="math notranslate nohighlight">\(u\)</span> having label <span class="math notranslate nohighlight">\(c\)</span></p>
+</li>
+<li><p>Update all nodes in a random order until convergence or until maximum number of iterations is reached.</p></li>
+</ol>
+<p>There are two issues with the method:</p>
+<ul class="simple">
+<li><p>Convergence is not guaranteed</p></li>
+<li><p>Node feature information is not used.</p></li>
+</ul>
+</section>
+</section>
+<section id="iterative-clasification">
+<h2>Iterative Clasification<a class="headerlink" href="#iterative-clasification" title="Permalink to this headline">#</a></h2>
+<section id="interative-classifier">
+<h3>Interative Classifier<a class="headerlink" href="#interative-classifier" title="Permalink to this headline">#</a></h3>
+<p>To leverage node level features, iterative classification classify
+node <span class="math notranslate nohighlight">\(v\)</span> based on its attributes <span class="math notranslate nohighlight">\(f_v\)</span> as well as
+labels <span class="math notranslate nohighlight">\(z_v\)</span> of neighbor set <span class="math notranslate nohighlight">\(\mathbf{N}_v\)</span>.</p>
+<p>This method involves training two classifiers on <strong>labelled training data</strong>:</p>
+<ul class="simple">
+<li><p><strong>Base classifier</strong> <span class="math notranslate nohighlight">\(\phi_1 (f_v)\)</span> predicts node label <span class="math notranslate nohighlight">\(Y_v\)</span> based on node feature vector <span class="math notranslate nohighlight">\(f_v\)</span>.</p></li>
+<li><p><strong>Relational classifider</strong> <span class="math notranslate nohighlight">\(\phi_2 (f_v,z_v)\)</span> predicts label <span class="math notranslate nohighlight">\(Y_v\)</span> based on node feature vector <span class="math notranslate nohighlight">\(f_v\)</span> and summary <span class="math notranslate nohighlight">\(z_v\)</span> of labels of <span class="math notranslate nohighlight">\(v\)</span>’s neighbors.</p></li>
+</ul>
+<p>When doing the inferences:</p>
+<ol class="simple">
+<li><p>For each node in the test data</p>
+<ul class="simple">
+<li><p>set labels <span class="math notranslate nohighlight">\(Y_v\)</span> based on the base classifier <span class="math notranslate nohighlight">\(\phi_1 (f_v)\)</span></p></li>
+<li><p>compute <span class="math notranslate nohighlight">\(z_v\)</span></p></li>
+<li><p>predict the labels with <span class="math notranslate nohighlight">\(\phi_1(f_v,z_v)\)</span></p></li>
+</ul>
+</li>
+<li><p>Repeat for each node <span class="math notranslate nohighlight">\(w\)</span>:</p>
+<ul class="simple">
+<li><p>update <span class="math notranslate nohighlight">\(z_v\)</span> based on <span class="math notranslate nohighlight">\(Y_u\)</span> for all <span class="math notranslate nohighlight">\(u \in \mathbf{N}_v\)</span></p></li>
+<li><p>update <span class="math notranslate nohighlight">\(Y_v\)</span> based on the new <span class="math notranslate nohighlight">\(z_v(\phi_2)\)</span></p></li>
+</ul>
+</li>
+<li><p>Update all nodes in a random order until convergence or until maximum number of iterations is reached. Again, convergence is not guaranteed.</p></li>
+</ol>
+</section>
+</section>
+<section id="collective-clasification">
+<h2>Collective Clasification<a class="headerlink" href="#collective-clasification" title="Permalink to this headline">#</a></h2>
+<section id="correct-smooth">
+<h3>Correct &amp; Smooth<a class="headerlink" href="#correct-smooth" title="Permalink to this headline">#</a></h3>
+<p>Correct &amp; Smooth takes the following steps</p>
+<ol>
+<li><p>Train a base predictor that predict soft labels (class probabilities) over all nodes.</p>
+<ul class="simple">
+<li><p>Labeled nodes are used for train/validation data.</p></li>
+<li><p>Base predictor can be simple. For example, Linear model/Multi-Layer-Perceptron(MLP) over node features</p></li>
+</ul>
+</li>
+<li><p>Given a trained base predictor, we apply it to obtain soft labels for all the nodes. We expect these soft labels to be decently accurate.</p></li>
+<li><p>2-step procedure to postprocess the soft predictions.</p>
+<ul>
+<li><p><strong>Correct step</strong>: The degree of the errors of the soft labels are biased. We need to correct for the error bias.</p>
+<ul>
+<li><p><em><strong>Compute training errors of nodes</strong></em>. The training error is caculated as ground-truth label minus soft label.Defined as 0 for unlabeled nodes.</p></li>
+<li><p><em><strong>Diffuse training errors <span class="math notranslate nohighlight">\(E^{(0)}\)</span> along the edges</strong></em>. The assumption here is that errors are simiar for nearby nodes.</p>
+<div class="math notranslate nohighlight">
+\[E^{(t+1)}\leftarrow (1-\alpha) \cdot E^{(t)} +\alpha \cdot \tilde A E^{(t)}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\alpha\)</span> is a hypterparamter. <span class="math notranslate nohighlight">\(\tilde A\)</span> is the normalized diffusion matrix. It is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[ \tilde  A \equiv D^{-1/2} A D^{-1/2} \]</div>
+<p>Where <span class="math notranslate nohighlight">\(A\)</span> be the adjacency matrix and Let <span class="math notranslate nohighlight">\(D \equiv \mathrm{Diag}(d_1,..,d_N)\)</span> be the degree matrix.</p>
+<p>For more details on this steps, Please refer to <a class="reference external" href="https://mlg.eng.cam.ac.uk/zoubin/papers/zgl.pdf">Zhu et al. ICML 2013</a>.</p>
+</li>
+<li><p><em><strong>Add the scaled diffused training errors into the predicted soft labels</strong></em></p></li>
+</ul>
+</li>
+<li><p><strong>Smooth step</strong>: The predicted soft labels may not be smooth over the graph. We need to smoothen the corrected soft labels along the edges. The assumption here is that neighboring nodes tend to share the same labels.</p>
+<ul>
+<li><p><em><strong>Diffuse label <span class="math notranslate nohighlight">\(Z^{(0)}\)</span> along the graph structure</strong></em></p>
+<div class="math notranslate nohighlight">
+\[Z^{(t+1)}\leftarrow (1-\alpha) \cdot Z^{(t)} +\alpha \cdot \tilde A Z^{(t)}\]</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>C&amp;S achieves strong performance on semisupervised node classification</p>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<p>[1]<a class="reference external" href="http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf">The PageRank Citation Ranking:Bringing Order to the Web</a></p>
-<p>[2]<a class="reference external" href="https://homepages.dcc.ufmg.br/~nivio/cursos/ri11/sources/pagerank.pdf">Page Rank Deck by Martin Klein and Santosh Vuppala</a></p>
+<p>[1]<a class="reference external" href="https://www.youtube.com/watch?v=6g9vtxUmfwM&amp;list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn&amp;index=14">Label Propagation for Node Classification Youtube. Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
+<p>[2]<a class="reference external" href="http://snap.stanford.edu/class/cs224w-2021/slides/05-message.pdf">Label Propagation for Node Classification Slides. Stanford CS224W: Machine Learning with Graphs | 2021</a></p>
 </section>
 </section>
 
@@ -470,19 +634,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="05_papers.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="06_page_rank.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Task 5: Node2vec &amp; DeepWalk</p>
+            <p class="prev-next-title">Task 6: Page Rank</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="07_label_propagation.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Relational Clasification</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
