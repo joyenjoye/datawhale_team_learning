@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Task 6: Page Rank &#8212; Datawhale Team Learning Notes</title>
+    <title>Task 6: Link Analysis with PageRank &#8212; Datawhale Team Learning Notes</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Task 7: Label Propagation for Node Classification" href="07_label_propagation.html" />
@@ -163,12 +165,17 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Task 6: Page Rank
+   Task 6: Link Analysis with PageRank
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_label_propagation.html">
    Task 7: Label Propagation for Node Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_GNN.html">
+   Task 8: Graph Neural Networks - GNN
   </a>
  </li>
 </ul>
@@ -378,8 +385,40 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation">
-   Motivation
+  <a class="reference internal nav-link" href="#pagerank">
+   PageRank
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-formulation">
+     Matrix Formulation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-walk">
+     Random Walk
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-solve-pagerank">
+     How to Solve PageRank
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problems-with-pagerank">
+     Problems with PageRank
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#personalized-pagerank">
+   Personalized PageRank
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-factorization-and-node-embeddings">
+   Matrix Factorization and Node Embeddings
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -396,7 +435,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Task 6: Page Rank</h1>
+                <h1>Task 6: Link Analysis with PageRank</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -407,8 +446,40 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation">
-   Motivation
+  <a class="reference internal nav-link" href="#pagerank">
+   PageRank
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrix-formulation">
+     Matrix Formulation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-walk">
+     Random Walk
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-solve-pagerank">
+     How to Solve PageRank
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problems-with-pagerank">
+     Problems with PageRank
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#personalized-pagerank">
+   Personalized PageRank
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-factorization-and-node-embeddings">
+   Matrix Factorization and Node Embeddings
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -426,20 +497,81 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="task-6-page-rank">
-<h1>Task 6: Page Rank<a class="headerlink" href="#task-6-page-rank" title="Permalink to this headline">#</a></h1>
-<section id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="task-6-link-analysis-with-pagerank">
+<h1>Task 6: Link Analysis with PageRank<a class="headerlink" href="#task-6-link-analysis-with-pagerank" title="Permalink to this headline">#</a></h1>
+<section id="pagerank">
+<h2>PageRank<a class="headerlink" href="#pagerank" title="Permalink to this headline">#</a></h2>
 <p>Two key challenges with regards to search on the World Wide Web:</p>
 <ul class="simple">
 <li><p>The information is large and heterogeneous</p></li>
 <li><p>Search engines must also be able to handle inexperienced users and pages engineered to manipulate search engine ranking functions.</p></li>
 </ul>
+<p>The initution behind PageRank is that a page is important if it is pointed by other important pages, which can be formulated as follows:</p>
+<ul>
+<li><p>Page <span class="math notranslate nohighlight">\(i\)</span> with importance <span class="math notranslate nohighlight">\(r_i\)</span> has <span class="math notranslate nohighlight">\(d_i\)</span> outlinks, each link <span class="math notranslate nohighlight">\(\frac{r_i}{d_i}\)</span></p></li>
+<li><p>Page <span class="math notranslate nohighlight">\(j\)</span>’s importance is the sum of votes from its’ incoming links</p>
+<div class="math notranslate nohighlight">
+\[r_j = \sum_{i \rightarrow j} \frac{r_i}{d_i}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d_i\)</span> is the out degree of node <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(i \rightarrow j\)</span> refers to the income page <span class="math notranslate nohighlight">\(i\)</span> for page <span class="math notranslate nohighlight">\(j\)</span></p>
+</li>
+</ul>
+<section id="matrix-formulation">
+<h3>Matrix Formulation<a class="headerlink" href="#matrix-formulation" title="Permalink to this headline">#</a></h3>
+<p>Let’s define <strong>stochastic adjacency matrix</strong> <span class="math notranslate nohighlight">\(M\)</span></p>
+<div class="math notranslate nohighlight">
+\[\mathrm{If} \quad  i \rightarrow j  \mathrm{,\quad then} \quad M_{ij} = \frac{1}{d_i}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(M_{ij}\)</span> is <span class="math notranslate nohighlight">\(i\)</span>th item from the <span class="math notranslate nohighlight">\(j\)</span>th column of the stochastic adjacency matrix <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>We further define <strong>rank vector</strong> <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> or importance scores of pages. For each page, there is an entry.</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{r} = [r_1, r_2, ..., r_i, ...r_n]^T\]</div>
+<p>Where <span class="math notranslate nohighlight">\(r_i\)</span> is the importance score of page <span class="math notranslate nohighlight">\(i\)</span>. <span class="math notranslate nohighlight">\(n\)</span> is the total number of pages. The sum of the the vector equals to 1:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{n} r_i = 1\]</div>
+</section>
+<section id="random-walk">
+<h3>Random Walk<a class="headerlink" href="#random-walk" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="how-to-solve-pagerank">
+<h3>How to Solve PageRank<a class="headerlink" href="#how-to-solve-pagerank" title="Permalink to this headline">#</a></h3>
+<p>Given a graph with n nodes, iiterative procedure:</p>
+<ul>
+<li><p>Assign each node an initial page rank
+$<span class="math notranslate nohighlight">\(r^{0} = [\frac{1}{n},...,\frac{1}{n}]^T\)</span>$</p>
+<p>All nodes are equally important.</p>
+</li>
+<li><p>Calculate the page rank of each node</p>
+<div class="math notranslate nohighlight">
+\[r_j^{(t+1)} = \sum_{i \rightarrow j} \frac{r_i^{t}}{d_i}\]</div>
+</li>
+<li><p>Repeat until convergence</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1 }^{n}|r_i^{t+1}- r_i^{t}|&lt;\epsilon\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\mathbf{L}_1\)</span> norm is used. Other vector norm also works, e.g., Euclidean.</p>
+</li>
+</ul>
+</section>
+<section id="problems-with-pagerank">
+<h3>Problems with PageRank<a class="headerlink" href="#problems-with-pagerank" title="Permalink to this headline">#</a></h3>
+<p>Ther are two problems with the PageRank</p>
+<ul class="simple">
+<li><p><strong>Dead Ends</strong>: some pages have no out-links and cause importance to leak out.</p></li>
+<li><p><strong>Spider Traps</strong>: all out-links are within the group which leads to all importances are absorbed by spider traps.</p></li>
+</ul>
+</section>
+</section>
+<section id="personalized-pagerank">
+<h2>Personalized PageRank<a class="headerlink" href="#personalized-pagerank" title="Permalink to this headline">#</a></h2>
+<p>pg 41 to 54</p>
+</section>
+<section id="matrix-factorization-and-node-embeddings">
+<h2>Matrix Factorization and Node Embeddings<a class="headerlink" href="#matrix-factorization-and-node-embeddings" title="Permalink to this headline">#</a></h2>
+<p>pg 55 to 64</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>[1]<a class="reference external" href="http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf">The PageRank Citation Ranking:Bringing Order to the Web</a></p>
 <p>[2]<a class="reference external" href="https://homepages.dcc.ufmg.br/~nivio/cursos/ri11/sources/pagerank.pdf">Page Rank Deck by Martin Klein and Santosh Vuppala</a></p>
+<p>[3]<a class="reference external" href="http://snap.stanford.edu/class/cs224w-2021/slides/04-pagerank.pdf">Link Analysis with PageRank Slides </a></p>
 </section>
 </section>
 

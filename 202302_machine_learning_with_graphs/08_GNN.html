@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_page_rank.html">
-   Task 6: Page Rank
+   Task 6: Link Analysis with PageRank
   </a>
  </li>
  <li class="toctree-l1">
@@ -361,12 +361,156 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basics-of-deep-learning">
+   Basics of Deep Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#machine-learning-as-optimization">
+     Machine Learning as Optimization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loss-functions">
+       Loss Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gradient-descent">
+       Gradient Descent
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">
+       Stochastic Gradient Descent(SGD)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mini-batch-sgd">
+       Mini Batch SGD
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#back-propoagation">
+       Back Propoagation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilayer-perceptron">
+     Multilayer Perceptron
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning-for-graphs">
+   Deep Learning for Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-networks">
+     Convolutional Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-invariance">
+     Permutation Invariance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-equivariance">
+     Permutation Equivariance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-neural-network">
+     Graph Neural Network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-convolutional-networks">
+   Graph Convolutional Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-train">
+     How to train
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gnn-vs-cnn-vs-transformer">
+   GNN vs. CNN vs. Transformer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-single-layer-of-a-gnn">
+   A Single Layer of a GNN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gnn-layers-in-practice">
+   GNN Layers in Practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-normalization">
+     Batch Normalization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dropout">
+     Dropout
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activation">
+     Activation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stacking-layers-of-a-gnn">
+   Stacking Layers of a GNN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-manipulation-in-gnn">
+   Graph Manipulation in GNN
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -378,6 +522,139 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basics-of-deep-learning">
+   Basics of Deep Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#machine-learning-as-optimization">
+     Machine Learning as Optimization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loss-functions">
+       Loss Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gradient-descent">
+       Gradient Descent
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">
+       Stochastic Gradient Descent(SGD)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mini-batch-sgd">
+       Mini Batch SGD
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#back-propoagation">
+       Back Propoagation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multilayer-perceptron">
+     Multilayer Perceptron
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning-for-graphs">
+   Deep Learning for Graphs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolutional-networks">
+     Convolutional Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-invariance">
+     Permutation Invariance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation-equivariance">
+     Permutation Equivariance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-neural-network">
+     Graph Neural Network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-convolutional-networks">
+   Graph Convolutional Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-train">
+     How to train
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gnn-vs-cnn-vs-transformer">
+   GNN vs. CNN vs. Transformer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-single-layer-of-a-gnn">
+   A Single Layer of a GNN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gnn-layers-in-practice">
+   GNN Layers in Practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-normalization">
+     Batch Normalization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dropout">
+     Dropout
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activation">
+     Activation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stacking-layers-of-a-gnn">
+   Stacking Layers of a GNN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph-manipulation-in-gnn">
+   Graph Manipulation in GNN
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -397,6 +674,84 @@ title="Print to PDF"
 </ul>
 <p>In this task, we learn how to use deep learning methods (graph neural networks, GNNs) to get a deep encoder to map nodes to embeddings.</p>
 <p>Essentially, the deep encoder is a multiple layers of non-linear transformations based on graph structure.</p>
+<section id="basics-of-deep-learning">
+<h2>Basics of Deep Learning<a class="headerlink" href="#basics-of-deep-learning" title="Permalink to this headline">#</a></h2>
+<p>pg 0 to 30</p>
+<section id="machine-learning-as-optimization">
+<h3>Machine Learning as Optimization<a class="headerlink" href="#machine-learning-as-optimization" title="Permalink to this headline">#</a></h3>
+<p>Formulate the task as an optimization probelm. Here, we optimize <span class="math notranslate nohighlight">\(\Theta\)</span> to minize the objective function <span class="math notranslate nohighlight">\(\mathcal{L}(\mathbf{y},f(x))\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\min_{\Theta} \mathcal{L}(\mathbf{y},f(\mathbf{x}))\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\Theta\)</span> contains parameters of <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<section id="loss-functions">
+<h4>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://pytorch.org/docs/stable/nn.html">Loss function</a> <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> can take many forms: L1, L2, huber, max margin(hinge loss), cross entropy, and etc</p>
+</section>
+<section id="gradient-descent">
+<h4>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="stochastic-gradient-descent-sgd">
+<h4>Stochastic Gradient Descent(SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="mini-batch-sgd">
+<h4>Mini Batch SGD<a class="headerlink" href="#mini-batch-sgd" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="back-propoagation">
+<h4>Back Propoagation<a class="headerlink" href="#back-propoagation" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="multilayer-perceptron">
+<h3>Multilayer Perceptron<a class="headerlink" href="#multilayer-perceptron" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="deep-learning-for-graphs">
+<h2>Deep Learning for Graphs<a class="headerlink" href="#deep-learning-for-graphs" title="Permalink to this headline">#</a></h2>
+<p>pg 30 to 51</p>
+<section id="convolutional-networks">
+<h3>Convolutional Networks<a class="headerlink" href="#convolutional-networks" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="permutation-invariance">
+<h3>Permutation Invariance<a class="headerlink" href="#permutation-invariance" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="permutation-equivariance">
+<h3>Permutation Equivariance<a class="headerlink" href="#permutation-equivariance" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="graph-neural-network">
+<h3>Graph Neural Network<a class="headerlink" href="#graph-neural-network" title="Permalink to this headline">#</a></h3>
+<p>Graph neural networks consist of multiple permutation equivariant / invariant functions.</p>
+</section>
+</section>
+<section id="graph-convolutional-networks">
+<h2>Graph Convolutional Networks<a class="headerlink" href="#graph-convolutional-networks" title="Permalink to this headline">#</a></h2>
+<p>pg 51 to 76</p>
+<section id="how-to-train">
+<h3>How to train<a class="headerlink" href="#how-to-train" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="gnn-vs-cnn-vs-transformer">
+<h2>GNN vs. CNN vs. Transformer<a class="headerlink" href="#gnn-vs-cnn-vs-transformer" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="a-single-layer-of-a-gnn">
+<h2>A Single Layer of a GNN<a class="headerlink" href="#a-single-layer-of-a-gnn" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="gnn-layers-in-practice">
+<h2>GNN Layers in Practice<a class="headerlink" href="#gnn-layers-in-practice" title="Permalink to this headline">#</a></h2>
+<section id="batch-normalization">
+<h3>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="dropout">
+<h3>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="activation">
+<h3>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+<section id="stacking-layers-of-a-gnn">
+<h2>Stacking Layers of a GNN<a class="headerlink" href="#stacking-layers-of-a-gnn" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="graph-manipulation-in-gnn">
+<h2>Graph Manipulation in GNN<a class="headerlink" href="#graph-manipulation-in-gnn" title="Permalink to this headline">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -408,16 +763,16 @@ title="Print to PDF"
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: ""
+            mode: "python"
         },
         kernelOptions: {
-            name: "",
+            name: "python3",
             path: "./202302_machine_learning_with_graphs"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = ''</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
