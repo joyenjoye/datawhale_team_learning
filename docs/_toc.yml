@@ -9,3 +9,14 @@ parts:
     chapters:
     - file: 202301_image_classification/01_data_preparation
     - file: 202301_image_classification/02_inference_with_pretrained_models
+  - caption: Machine Learning with Graphs
+    numbered: false
+    chapters:
+     - file: 202302_machine_learning_with_graphs/01_introduction
+     - file: 202302_machine_learning_with_graphs/02_traditional_feature_based_methods
+     - file: 202302_machine_learning_with_graphs/03_networkx
+     - file: 202302_machine_learning_with_graphs/04_node_embedding
+     - file: 202302_machine_learning_with_graphs/05_papers
+     - file: 202302_machine_learning_with_graphs/06_page_rank
+     - file: 202302_machine_learning_with_graphs/07_label_propagation
+     - file: 202302_machine_learning_with_graphs/08_GNN
