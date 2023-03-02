@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Task 8: Graph Neural Networks - GNN &#8212; Datawhale Team Learning Notes</title>
+    <title>Task 8: Graph Neural Networks &#8212; Datawhale Team Learning Notes</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -174,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Task 8: Graph Neural Networks - GNN
+   Task 8: Graph Neural Networks
   </a>
  </li>
 </ul>
@@ -423,40 +423,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deep-learning-for-graphs">
-   Deep Learning for Graphs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convolutional-networks">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#permutation-invariance">
-     Permutation Invariance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#permutation-equivariance">
-     Permutation Equivariance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#graph-neural-network">
-     Graph Neural Network
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#graph-convolutional-networks">
    Graph Convolutional Networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-train">
-     How to train
+    <a class="reference internal nav-link" href="#matrix-formulation">
+     Matrix Formulation
     </a>
    </li>
   </ul>
@@ -464,43 +437,6 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gnn-vs-cnn-vs-transformer">
    GNN vs. CNN vs. Transformer
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-single-layer-of-a-gnn">
-   A Single Layer of a GNN
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gnn-layers-in-practice">
-   GNN Layers in Practice
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#batch-normalization">
-     Batch Normalization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dropout">
-     Dropout
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#activation">
-     Activation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stacking-layers-of-a-gnn">
-   Stacking Layers of a GNN
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graph-manipulation-in-gnn">
-   Graph Manipulation in GNN
   </a>
  </li>
 </ul>
@@ -512,7 +448,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Task 8: Graph Neural Networks - GNN</h1>
+                <h1>Task 8: Graph Neural Networks</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -562,40 +498,13 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deep-learning-for-graphs">
-   Deep Learning for Graphs
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convolutional-networks">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#permutation-invariance">
-     Permutation Invariance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#permutation-equivariance">
-     Permutation Equivariance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#graph-neural-network">
-     Graph Neural Network
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#graph-convolutional-networks">
    Graph Convolutional Networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-train">
-     How to train
+    <a class="reference internal nav-link" href="#matrix-formulation">
+     Matrix Formulation
     </a>
    </li>
   </ul>
@@ -603,43 +512,6 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gnn-vs-cnn-vs-transformer">
    GNN vs. CNN vs. Transformer
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-single-layer-of-a-gnn">
-   A Single Layer of a GNN
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gnn-layers-in-practice">
-   GNN Layers in Practice
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#batch-normalization">
-     Batch Normalization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dropout">
-     Dropout
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#activation">
-     Activation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stacking-layers-of-a-gnn">
-   Stacking Layers of a GNN
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graph-manipulation-in-gnn">
-   Graph Manipulation in GNN
   </a>
  </li>
 </ul>
@@ -652,8 +524,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="task-8-graph-neural-networks-gnn">
-<h1>Task 8: Graph Neural Networks - GNN<a class="headerlink" href="#task-8-graph-neural-networks-gnn" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="task-8-graph-neural-networks">
+<h1>Task 8: Graph Neural Networks<a class="headerlink" href="#task-8-graph-neural-networks" title="Permalink to this headline">#</a></h1>
 <p>In Task 2, we learnt traditional feature based methods - for a given input graph, node, link and graph-level features are extracted so that they can be feed into a model (SVM, neural network) that maps features to target labels.</p>
 <p>In Task 4, we learnt graph representation learning which learns task-idependent features for downstream models efficiently. It uses a <em><strong>shallow</strong></em> <strong>Encoder</strong> to map nodes to emebdings and <strong>Decoder</strong> to map embeddings to similarity Score.</p>
 <p>The limitation of shallow emebedding methods are as follows:</p>
@@ -846,58 +718,72 @@ $<span class="math notranslate nohighlight">\(\sigma(x)= \frac{1}{1+e^{-x}}\)</s
 <li><p><span class="math notranslate nohighlight">\(b^{l}\)</span> is bias at layer  <span class="math notranslate nohighlight">\(l\)</span> , and is added to the linear transformation of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\sigma\)</span> is non-linearity function (e.g., sigmod)</p></li>
 </ul>
-</section>
-</section>
-<section id="deep-learning-for-graphs">
-<h2>Deep Learning for Graphs<a class="headerlink" href="#deep-learning-for-graphs" title="Permalink to this headline">#</a></h2>
-<p>Nodes aggregate information from their neighbors using neural networks. The important consideration is how to aggregate information acorss the layers. A basic appraoch is to average neighbor messages and paply a neural network.</p>
-<div class="math notranslate nohighlight">
-\[h_v^{l+1} = \sigma\big(W_l \sum_{u\in N(v)}\frac{h_u^{(l)}}{|\mathrm{N}(v)|}+\mathrm{B}_l h_v^{(l)} \big), \quad \forall \, l \in \{0,...,L-1\}\]</div>
-<section id="convolutional-networks">
-<h3>Convolutional Networks<a class="headerlink" href="#convolutional-networks" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="permutation-invariance">
-<h3>Permutation Invariance<a class="headerlink" href="#permutation-invariance" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="permutation-equivariance">
-<h3>Permutation Equivariance<a class="headerlink" href="#permutation-equivariance" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="graph-neural-network">
-<h3>Graph Neural Network<a class="headerlink" href="#graph-neural-network" title="Permalink to this headline">#</a></h3>
-<p>Graph neural networks consist of multiple permutation equivariant / invariant functions.</p>
-</section>
+<!-- ## Ideas for Deep Learning for Graphs
+
+
+### Convolutional Networks
+
+### Permutation Invariance
+
+### Permutation Equivariance
+
+### Graph Neural Network
+
+Graph neural networks consist of multiple permutation equivariant / invariant functions.
+ --></section>
 </section>
 <section id="graph-convolutional-networks">
 <h2>Graph Convolutional Networks<a class="headerlink" href="#graph-convolutional-networks" title="Permalink to this headline">#</a></h2>
-<p>pg 51 to 76</p>
-<section id="how-to-train">
-<h3>How to train<a class="headerlink" href="#how-to-train" title="Permalink to this headline">#</a></h3>
-</section>
+<p>Assume we have a graph <span class="math notranslate nohighlight">\(G\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V\)</span> is the vertex set</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the adjacency matrix(assume binary)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{X} \in \mathbb{R}^{m |V|}\)</span>is a matrix of node features</p></li>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> is a node in <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\mathrm{N}(v)\)</span> is the set of neighbors of <span class="math notranslate nohighlight">\(v\)</span>.</p></li>
+</ul>
+<p>Nodes aggregate information from their neighbors using neural networks. The important consideration is how to aggregate information across the layers. A basic appraoch is to average neighbor messages and paply a neural network.</p>
+<div class="math notranslate nohighlight">
+\[h_v^{(l+1)} = \sigma\big(W_l \sum_{u\in N(v)}\frac{h_u^{(l)}}{|\mathrm{N}(v)|}+\mathrm{B}_l h_v^{(l)} \big), \quad \forall \, l \in \{0,...,L-1\}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sum_{u\in N(v)}\frac{h_u^{(l)}}{|\mathrm{N}(v)|}\)</span> is the average of neighbors’ previous layer emebeddings</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_v^{(l)}\)</span> is the embedding of <span class="math notranslate nohighlight">\(v\)</span> at layer <span class="math notranslate nohighlight">\(l\)</span>. When <span class="math notranslate nohighlight">\(l=0\)</span>, <span class="math notranslate nohighlight">\(h_v^0 = x_v\)</span> which is the initial 0-th layer’s embedding and equals to the node features.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> is the total number of layers.</p></li>
+<li><p><span class="math notranslate nohighlight">\(W_l\)</span> is the weight matrix for neighborhood aggregation</p></li>
+<li><p><span class="math notranslate nohighlight">\(B_l\)</span> is the weight matrix for transforming hidden vector.</p></li>
+</ul>
+<p>After <span class="math notranslate nohighlight">\(L\)</span> layers of neighborhood aggregation, we can get the emebeddings of <span class="math notranslate nohighlight">\(v\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[z_v = h_v^{(L)}\]</div>
+<section id="matrix-formulation">
+<h3>Matrix Formulation<a class="headerlink" href="#matrix-formulation" title="Permalink to this headline">#</a></h3>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[H^{(l)} =[h_1^{(l)}, ... , h_{|v|}^{(l)}]^T\]</div>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[\sum_{u\in N(v)}{h_u^{(l)}} = A_vH^{(l)}\]</div>
+<!-- ### How to train --></section>
 </section>
 <section id="gnn-vs-cnn-vs-transformer">
 <h2>GNN vs. CNN vs. Transformer<a class="headerlink" href="#gnn-vs-cnn-vs-transformer" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="a-single-layer-of-a-gnn">
-<h2>A Single Layer of a GNN<a class="headerlink" href="#a-single-layer-of-a-gnn" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="gnn-layers-in-practice">
-<h2>GNN Layers in Practice<a class="headerlink" href="#gnn-layers-in-practice" title="Permalink to this headline">#</a></h2>
-<section id="batch-normalization">
-<h3>Batch Normalization<a class="headerlink" href="#batch-normalization" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="dropout">
-<h3>Dropout<a class="headerlink" href="#dropout" title="Permalink to this headline">#</a></h3>
-</section>
-<section id="activation">
-<h3>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">#</a></h3>
-</section>
-</section>
-<section id="stacking-layers-of-a-gnn">
-<h2>Stacking Layers of a GNN<a class="headerlink" href="#stacking-layers-of-a-gnn" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="graph-manipulation-in-gnn">
-<h2>Graph Manipulation in GNN<a class="headerlink" href="#graph-manipulation-in-gnn" title="Permalink to this headline">#</a></h2>
-</section>
+<p><strong>CNN</strong> can be seen as a special GNN with fixed neighbor size and ordering:</p>
+<ul class="simple">
+<li><p>The size of the filter is pre-defined for a CNN.</p></li>
+<li><p>The advantage of GNN is it processes arbitrary graphs with different degrees for each node.</p></li>
+</ul>
+<p><strong>Transformer</strong> is one of the most popular architectures that achieves great performance in many sequence modeling tasks. The key component of transformer is self-attention mechamsim where each word attends to all the other words. In this case, the computation graph of a transformer layer is identical to that of a GNN on the fully-connected “word” graph.</p>
+<!-- ## 
+## A Single Layer of a GNN
+## GNN Layers in Practice
+
+### Batch Normalization
+
+### Dropout
+
+### Activation
+
+## Stacking Layers of a GNN
+## Graph Manipulation in GNN --></section>
 </section>
 
     <script type="text/x-thebe-config">
