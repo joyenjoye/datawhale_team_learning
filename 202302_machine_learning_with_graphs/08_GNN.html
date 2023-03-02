@@ -394,31 +394,26 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#loss-functions">
-       Loss Functions
+      <a class="reference internal nav-link" href="#objective-function">
+       Objective Function
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#gradient-descent">
-       Gradient Descent
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">
-       Stochastic Gradient Descent(SGD)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mini-batch-sgd">
-       Mini Batch SGD
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#back-propoagation">
-       Back Propoagation
+      <a class="reference internal nav-link" href="#how-to-optimize">
+       How to Optimize?
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-function">
+     Linear Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-linear-network">
+     2-Layer Linear Network
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multilayer-perceptron">
@@ -538,31 +533,26 @@ title="Print to PDF"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#loss-functions">
-       Loss Functions
+      <a class="reference internal nav-link" href="#objective-function">
+       Objective Function
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#gradient-descent">
-       Gradient Descent
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#stochastic-gradient-descent-sgd">
-       Stochastic Gradient Descent(SGD)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mini-batch-sgd">
-       Mini Batch SGD
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#back-propoagation">
-       Back Propoagation
+      <a class="reference internal nav-link" href="#how-to-optimize">
+       How to Optimize?
       </a>
      </li>
     </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-function">
+     Linear Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-linear-network">
+     2-Layer Linear Network
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multilayer-perceptron">
@@ -676,37 +666,193 @@ title="Print to PDF"
 <p>Essentially, the deep encoder is a multiple layers of non-linear transformations based on graph structure.</p>
 <section id="basics-of-deep-learning">
 <h2>Basics of Deep Learning<a class="headerlink" href="#basics-of-deep-learning" title="Permalink to this headline">#</a></h2>
-<p>pg 0 to 30</p>
 <section id="machine-learning-as-optimization">
 <h3>Machine Learning as Optimization<a class="headerlink" href="#machine-learning-as-optimization" title="Permalink to this headline">#</a></h3>
-<p>Formulate the task as an optimization probelm. Here, we optimize <span class="math notranslate nohighlight">\(\Theta\)</span> to minize the objective function <span class="math notranslate nohighlight">\(\mathcal{L}(\mathbf{y},f(x))\)</span>.</p>
+<section id="objective-function">
+<h4>Objective Function<a class="headerlink" href="#objective-function" title="Permalink to this headline">#</a></h4>
+<p>Formulate the task as an optimization probelm. Here, we optimize <span class="math notranslate nohighlight">\(\Theta\)</span> to minize the objective function <span class="math notranslate nohighlight">\(\mathcal{L}(\mathbf{y},f(\mathbf{x}))\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\min_{\Theta} \mathcal{L}(\mathbf{y},f(\mathbf{x}))\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\Theta\)</span> contains parameters of <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<section id="loss-functions">
-<h4>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline">#</a></h4>
-<p>The <a class="reference external" href="https://pytorch.org/docs/stable/nn.html">Loss function</a> <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> can take many forms: L1, L2, huber, max margin(hinge loss), cross entropy, and etc</p>
+<p>The <a class="reference external" href="https://pytorch.org/docs/stable/nn.html">Loss function</a> <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> can take many forms: L1, L2, huber, max margin(hinge loss), cross entropy, and etc. One of the common loss for classification is cross entropy loss.</p>
+<p>Consider we are doing multi-class classification where the target variable can belong to one of 3 classes: Class 1, Class 2, Class 3.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Target Variable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>Class 1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Class 3</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Class 2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Class 2</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Class 1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>One-hot encoding is applied on the target variable, we get <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> which is a n by 3 matrix. where <span class="math notranslate nohighlight">\({y}_i\)</span> is the actual values of the i-th class for a given instance.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Class 1 (<span class="math notranslate nohighlight">\(y_1\)</span>)</p></th>
+<th class="text-align:center head"><p>Class 2 (<span class="math notranslate nohighlight">\(y_2\)</span>)</p></th>
+<th class="text-align:center head"><p>Class (<span class="math notranslate nohighlight">\(y_3\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>We want to train a model <span class="math notranslate nohighlight">\(\hat {\mathbf{y}} = f(\mathbf{x})\)</span> to make prediction on the probablity of each class. <span class="math notranslate nohighlight">\(\hat {{y}}_i\)</span> is the predicted values of the i-th class for a given instance.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Class 1 (<span class="math notranslate nohighlight">\(\hat{y}_1\)</span>)</p></th>
+<th class="text-align:center head"><p>Class 2 (<span class="math notranslate nohighlight">\(\hat {y}_2\)</span>)</p></th>
+<th class="text-align:center head"><p>Class (<span class="math notranslate nohighlight">\(\hat {y}_3\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span style="color:blue">0.80</span></p></td>
+<td class="text-align:center"><p>0.11</p></td>
+<td class="text-align:center"><p>0.09</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0.05</p></td>
+<td class="text-align:center"><p>0.05</p></td>
+<td class="text-align:center"><p><span style="color:blue">0.99</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>0.20</p></td>
+<td class="text-align:center"><p><span style="color:blue">0.70</span></p></td>
+<td class="text-align:center"><p>0.10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0.10</p></td>
+<td class="text-align:center"><p><span style="color:blue">0.88</span></p></td>
+<td class="text-align:center"><p>0.02</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span style="color:blue">0.65</span></p></td>
+<td class="text-align:center"><p>0.25</p></td>
+<td class="text-align:center"><p>0.10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The sum of the probability of each class equals to 1. For a given instance, we can then predict it belongs to the class with maximum probablity. In general, to ensure the output of <span class="math notranslate nohighlight">\(f(x)\)</span> to be probabilities which sum up to 1, softmax function <span class="math notranslate nohighlight">\(\sigma\)</span> is applied on the output <span class="math notranslate nohighlight">\(g(x)\)</span> from the previous step:</p>
+<div class="math notranslate nohighlight">
+\[\hat{{y}} = f(x) = \sigma\big(g(x)\big)\]</div>
+<p>The predicted values of the <span class="math notranslate nohighlight">\(i\)</span>-th class for a given instance <span class="math notranslate nohighlight">\(\hat{{y}}_i\)</span> is thus as follows</p>
+<div class="math notranslate nohighlight">
+\[ \hat{y}_i =f(x)_i = \sigma\big(g(x)_i\big) = \frac{e^{g(x)_i}}{ \sum_{i=j}^C e^{g(x)_j}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(C\)</span> is the number of classes. In the above example <span class="math notranslate nohighlight">\(C=3\)</span></p>
+<p>The cross entropy loss for each instance is thus:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{CE}\big(y,f(x)\big) =-\sum_{i=1}^C {y}_i \hat {{y}}_i =-\sum_{i=1}^C {y}_i logf({x})_i\]</div>
+<p>The lower the loss, the closer the prediction <span class="math notranslate nohighlight">\(\hat {{y}}\)</span> is to one-hot encoded true label <span class="math notranslate nohighlight">\({y}\)</span>. Sum up the loss over all training examples, we have the loss function as follows:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\mathbf{y},f(\mathbf{x})) = \sum_{(x,y)\in\mathcal{T}} \mathrm{CE}\big(y,f(x)\big) \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{T}\)</span> training set containing all pairs of data and labels</p>
 </section>
-<section id="gradient-descent">
-<h4>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">#</a></h4>
+<section id="how-to-optimize">
+<h4>How to Optimize?<a class="headerlink" href="#how-to-optimize" title="Permalink to this headline">#</a></h4>
+<p>Once we have the objective function, the next question is how to optimize it?</p>
+<p><strong>Gradient Descent</strong> is an iterative algorithm which repeated update weights <span class="math notranslate nohighlight">\(\Theta\)</span> in the oppsite direction of gradients until the objective function converge.</p>
+<div class="math notranslate nohighlight">
+\[ \Theta \leftarrow  \Theta - \mathbf{\eta} \, \nabla_\Theta \mathcal{L} \]</div>
+<p>Where <span class="math notranslate nohighlight">\(\eta\)</span> is a hyperparameter that controls the size of gradient step. It can vary over the course of training. The graident vector <span class="math notranslate nohighlight">\(\nabla_\Theta \mathcal{L}\)</span> can be computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[ \nabla_\Theta \mathcal{L}= (\frac{\partial \mathcal{L}}{\partial \, {\Theta_1} } ,\frac{\partial \mathcal{L}}{\partial\,{\Theta_2} },...)\]</div>
+<p>Ideally, we would like to terminate the iteration when gradient equals 0. In practice we stop training when it no longer imporves performance on validation set.</p>
+<p>The problem with grident decent is that extract gradient requires computing <span class="math notranslate nohighlight">\(\nabla_\Theta \mathcal{L}(\mathbf{y},\mathbf{x})\)</span> where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the entire dataset. i.e. summing up gradient contribution over all data points in the dataset. Modern dataset often contain billions of data points which leads to extermelly expensive caculation for every gradient descent step.</p>
+<p>One solution to address this is to use <strong>Stochastic Gradient Descent(SGD)</strong>. At each step, it picks a different minibatch <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> containing a subset of the dataset use it a input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.  The SGD process involves the following conceps:</p>
+<ul class="simple">
+<li><p><em>Batch size</em>: the number of data points in a minibatch</p></li>
+<li><p><em>Iteration</em>: 1 step of SGD on a minibatch</p></li>
+<li><p><em>Epoch</em>: one full pass over the dataset (# iterations is equal to ratio of dataset size and batch size)</p></li>
+</ul>
+<p>SGD is unbiased estimator of full gradient. But there is no guarantee on the rate of convergence. In practice often requires tuning of learning rate. Common optimizer that improves over SGD: Adam, Adagrad, Adadelta, RMSprop.</p>
+<p>When updating the weights <span class="math notranslate nohighlight">\(\Theta\)</span> interatively, there are 2 steps for each iteration.</p>
+<ul class="simple">
+<li><p><strong>Forward Propoagation</strong>: compute <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> given <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and updated <span class="math notranslate nohighlight">\(\Theta\)</span>. Use computed <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> to compute <span class="math notranslate nohighlight">\(\mathcal{L}\)</span>.</p></li>
+<li><p><strong>Back Propoagation</strong>: using chain rule to propagate gradients of intermediate steps, and finally obtain gradient <span class="math notranslate nohighlight">\(\nabla_\Theta \mathcal{L}\)</span> .</p></li>
+</ul>
 </section>
-<section id="stochastic-gradient-descent-sgd">
-<h4>Stochastic Gradient Descent(SGD)<a class="headerlink" href="#stochastic-gradient-descent-sgd" title="Permalink to this headline">#</a></h4>
 </section>
-<section id="mini-batch-sgd">
-<h4>Mini Batch SGD<a class="headerlink" href="#mini-batch-sgd" title="Permalink to this headline">#</a></h4>
+<section id="linear-function">
+<h3>Linear Function<a class="headerlink" href="#linear-function" title="Permalink to this headline">#</a></h3>
+<p>In previous section, we formulate machine learning as an optimization probelm.</p>
+<div class="math notranslate nohighlight">
+\[\min_{\Theta} \mathcal{L}(\mathbf{y},f(\mathbf{x}))\]</div>
+<p>Now let’s see try to apply and use it. To start, consider linear function.</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = W \cdot \mathbf{x}, \quad \Theta = \{W\}\]</div>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(f\)</span> returns a scalar, then <span class="math notranslate nohighlight">\(W\)</span> is a weight vector.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f\)</span> returns a vector, then <span class="math notranslate nohighlight">\(W\)</span> is a weight matrix, called Jacobian Matrix.</p></li>
+</ul>
 </section>
-<section id="back-propoagation">
-<h4>Back Propoagation<a class="headerlink" href="#back-propoagation" title="Permalink to this headline">#</a></h4>
-</section>
+<section id="layer-linear-network">
+<h3>2-Layer Linear Network<a class="headerlink" href="#layer-linear-network" title="Permalink to this headline">#</a></h3>
+<p>To make it a bit more complex, let’s look at 2-Layer linear network,</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = g(h(\mathbf{x})) =W_2( W_1 \mathbf{x}), \quad \Theta = \{W_1,W_2\}\]</div>
+<p>Here we use <span class="math notranslate nohighlight">\(h(\mathbf{x})= W_1 \mathbf{x}\)</span> to denote the hidden layer.</p>
+<p>Assume we use L2 Loss for objective function and SGD for optimization. Then for each minibatch <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>, the loss can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[ \mathcal{L} = \sum_{(x,y)\in\mathcal{B}} ||\mathbf{y}-f(\mathbf{x})||_2\]</div>
 </section>
 <section id="multilayer-perceptron">
 <h3>Multilayer Perceptron<a class="headerlink" href="#multilayer-perceptron" title="Permalink to this headline">#</a></h3>
+<p>Note that in 2-Layer Linear Network, <span class="math notranslate nohighlight">\(W_2 W_1\)</span> is just another matrix, and <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> is still linear w.r.t. <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.  To intorudce non-linearity, we need to apply a non-linear transformations. Popular non-linear transformation function include:</p>
+<ul class="simple">
+<li><p>Rectified Linear Unit(ReLU)
+$<span class="math notranslate nohighlight">\(ReLU(x)= \max(x,0)\)</span>$</p></li>
+<li><p>Sigmoid
+$<span class="math notranslate nohighlight">\(\sigma(x)= \frac{1}{1+e^{-x}}\)</span>$</p></li>
+</ul>
+<p>Each layer of Multilayer Perceptron(MLP) combines linear and non-linear transformation.</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}^{(l+1)} = \sigma(W_l\mathbf{x}^{(l)}+b^{l})\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(W_l\)</span> is weight matrix that transforms hidden representation at layer <span class="math notranslate nohighlight">\(l\)</span> to layer <span class="math notranslate nohighlight">\(l+1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(b^{l}\)</span> is bias at layer  <span class="math notranslate nohighlight">\(l\)</span> , and is added to the linear transformation of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> is non-linearity function (e.g., sigmod)</p></li>
+</ul>
 </section>
 </section>
 <section id="deep-learning-for-graphs">
 <h2>Deep Learning for Graphs<a class="headerlink" href="#deep-learning-for-graphs" title="Permalink to this headline">#</a></h2>
-<p>pg 30 to 51</p>
+<p>Nodes aggregate information from their neighbors using neural networks. The important consideration is how to aggregate information acorss the layers. A basic appraoch is to average neighbor messages and paply a neural network.</p>
+<div class="math notranslate nohighlight">
+\[h_v^{l+1} = \sigma\big(W_l \sum_{u\in N(v)}\frac{h_u^{(l)}}{|\mathrm{N}(v)|}+\mathrm{B}_l h_v^{(l)} \big), \quad \forall \, l \in \{0,...,L-1\}\]</div>
 <section id="convolutional-networks">
 <h3>Convolutional Networks<a class="headerlink" href="#convolutional-networks" title="Permalink to this headline">#</a></h3>
 </section>
