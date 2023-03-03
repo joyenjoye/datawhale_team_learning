@@ -175,7 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="08_GNN.html">
-   Task 8: Graph Neural Networks - GNN
+   Task 8: Graph Neural Networks
   </a>
  </li>
 </ul>
@@ -765,10 +765,10 @@ vector <span class="math notranslate nohighlight">\(\mathcal{f}_G \in \mathbb{R}
 <li><p>Assgin an initial color <span class="math notranslate nohighlight">\(c^{(0)}(v)\)</span> to each node <span class="math notranslate nohighlight">\(v\)</span>.</p></li>
 <li><p>Iteractively refine node colors by</p>
 <div class="math notranslate nohighlight">
-\[c^{(k+1)}(v) = \mathrm{HASH}(\{c^{(k)}(v)\},\{c^{(k)}(u)\}_{u\in N(v)}\})\]</div>
+\[c^{(k+1)}(v) = \mathrm{HASH}(c^{(k)}(v),\{c^{(k)}(u)\}_{u\in N(v)}\})\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathrm{HASH}\)</span> maps different inputs to different colors.</p>
 </li>
-<li><p>After <span class="math notranslate nohighlight">\(K\)</span> steps of color refinement, <span class="math notranslate nohighlight">\(c^{(k)}(v)\)</span> summarizes the structure of <span class="math notranslate nohighlight">\(K-hop\)</span> neighborhood.</p></li>
+<li><p>After <span class="math notranslate nohighlight">\(K\)</span> steps of color refinement, <span class="math notranslate nohighlight">\(c^{(k)}(v)\)</span> summarizes the structure of <span class="math notranslate nohighlight">\(K\)</span>-hop neighborhood.</p></li>
 </ul>
 <p>After color refinement, WL kernel counts number of nodes with a given color. The WL kernel value is computed by the inner product of the color count vectors.</p>
 <p>WL kernel is computationally efficient.</p>
