@@ -22,3 +22,5 @@ parts:
      - file: 202302_machine_learning_with_graphs/08_GNN
      - file: 202302_machine_learning_with_graphs/09_GNN_expressiveness
      - file: 202302_machine_learning_with_graphs/10_GCN
+     - file: 202302_machine_learning_with_graphs/11_GraphSAGE
+     - file: 202302_machine_learning_with_graphs/12_GAT
