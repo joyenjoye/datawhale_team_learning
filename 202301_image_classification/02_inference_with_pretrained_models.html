@@ -50,6 +50,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Task 1: Introduction" href="../202302_machine_learning_with_graphs/01_introduction.html" />
@@ -173,7 +174,27 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../202302_machine_learning_with_graphs/08_GNN.html">
-   Task 8: Graph Neural Networks - GNN
+   Task 8: Graph Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/09_GNN_expressiveness.html">
+   Task 9: How Expressive are GNNs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/10_GCN.html">
+   Task 10: Graph Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/11_GraphSAGE.html">
+   Task 11: GraphSAGE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/12_GAT.html">
+   Task 12: Graph Attention Newtorks
   </a>
  </li>
 </ul>
@@ -715,7 +736,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -q -r requirements.txt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
 </div>
@@ -725,7 +746,7 @@ title="Print to PDF"
 <h3>Download Images for Inference<a class="headerlink" href="#download-images-for-inference" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bash src/download.sh
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bash<span class="w"> </span>src/download.sh
 </pre></div>
 </div>
 </div>
@@ -1359,7 +1380,7 @@ Apply softmax on the logits to get probability. The shape is -&gt; torch.Size([1
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./202301_image_classification"
         },
         predefinedOutput: true
@@ -1397,7 +1418,7 @@ Apply softmax on the logits to get probability. The shape is -&gt; torch.Size([1
   
     By Joye<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>

@@ -50,6 +50,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Task 2: Inference with Pre-trained models" href="02_inference_with_pretrained_models.html" />
@@ -173,7 +174,27 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../202302_machine_learning_with_graphs/08_GNN.html">
-   Task 8: Graph Neural Networks - GNN
+   Task 8: Graph Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/09_GNN_expressiveness.html">
+   Task 9: How Expressive are GNNs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/10_GCN.html">
+   Task 10: Graph Convolutional Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/11_GraphSAGE.html">
+   Task 11: GraphSAGE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../202302_machine_learning_with_graphs/12_GAT.html">
+   Task 12: Graph Attention Newtorks
   </a>
  </li>
 </ul>
@@ -617,7 +638,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install -q -r requirements.txt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-q<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
 </div>
@@ -627,7 +648,7 @@ title="Print to PDF"
 <h3>Setup font for Chinese<a class="headerlink" href="#setup-font-for-chinese" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl https://zihao-openmmlab.obs.cn-east-3.myhuaweicloud.com/20220716-mmclassification/dataset/SimHei.ttf -o SimHei.ttf
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>curl<span class="w"> </span>https://zihao-openmmlab.obs.cn-east-3.myhuaweicloud.com/20220716-mmclassification/dataset/SimHei.ttf<span class="w"> </span>-o<span class="w"> </span>SimHei.ttf
 </pre></div>
 </div>
 </div>
@@ -641,7 +662,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>which python
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>which<span class="w"> </span>python
 </pre></div>
 </div>
 </div>
@@ -653,7 +674,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mv SimHei.ttf /usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/SimHei.ttf
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mv<span class="w"> </span>SimHei.ttf<span class="w"> </span>/usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/SimHei.ttf
 </pre></div>
 </div>
 </div>
@@ -673,7 +694,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>rm -rf /Users/joye/.matplotlib
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>rm<span class="w"> </span>-rf<span class="w"> </span>/Users/joye/.matplotlib
 </pre></div>
 </div>
 </div>
@@ -690,7 +711,7 @@ title="Print to PDF"
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes">Source</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>open /usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/matplotlibrc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>open<span class="w"> </span>/usr/local/Caskroom/miniforge/base/envs/joye_env/lib/python3.8/site-packages/matplotlib/mpl-data/matplotlibrc
 </pre></div>
 </div>
 </div>
@@ -837,9 +858,9 @@ data/黄瓜/41.jpg 非三通道，删除
 <h3>Remove system files<a class="headerlink" href="#remove-system-files" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
 </pre></div>
 </div>
 </div>
@@ -1248,9 +1269,9 @@ data/黄瓜/41.jpg 非三通道，删除
 <h2>House Cleaning<a class="headerlink" href="#house-cleaning" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
-<span class="o">!</span><span class="k">for</span> i <span class="k">in</span> <span class="sb">`</span>find . -iname <span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span> rm -rf <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;__MACOSX&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.DS_Store&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+<span class="o">!</span><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>find<span class="w"> </span>.<span class="w"> </span>-iname<span class="w"> </span><span class="s1">&#39;.ipynb_checkpoints&#39;</span><span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
 </pre></div>
 </div>
 </div>
@@ -1270,7 +1291,7 @@ data/黄瓜/41.jpg 非三通道，删除
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./202301_image_classification"
         },
         predefinedOutput: true
@@ -1308,7 +1329,7 @@ data/黄瓜/41.jpg 非三通道，删除
   
     By Joye<br/>
   
-      &copy; Copyright 2022.<br/>
+      &copy; Copyright 2023.<br/>
 </p>
         </footer>
     </div>
